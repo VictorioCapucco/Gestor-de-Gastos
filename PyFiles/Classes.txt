@@ -1,0 +1,1757 @@
+# coding: latin-1 
+from datetime import datetime
+from random import randint
+from time import sleep
+import getpass
+import shutil
+import sys
+import os
+
+
+
+#---Funções Gerais---#
+def Esperar_Relatorio():
+    for contagem in range(0,1):
+        sleep(0.03)
+
+def Esperar():
+    for contagem in range(0,1):
+        sleep(1)
+
+def Fim_Programa():
+    print('        |\n        | Até Logo!')
+    Esperar()
+    sys.exit()
+
+
+def Existe_Arquivo(endereco):
+    if (os.path.isfile(endereco)) == True:
+        return True
+    else:
+        return False
+
+
+                            #Lista, lista, lista, lista, lista, lista, lista
+def Bubble_Sort_Despesa(lista_codigo, lista_descricao, lista_valor, lista_dia, lista_classificacao, lista_codigo_tipo_despesa, lista_codigo_forma_pagamento):
+    try:
+        for i in range(len(lista_codigo)-1, 0, -1):
+            for j in range (i):
+                if int(lista_dia[j]) > int(lista_dia[j+1]):
+                    #---Ordenando o código---#
+                    temporario          = lista_codigo[j]
+                    lista_codigo[j]     = lista_codigo[j+1]
+                    lista_codigo[j+1]   = temporario
+                    #---Ordenando a Descrição---#
+                    temporario              = lista_descricao[j]
+                    lista_descricao[j]      = lista_descricao[j+1]
+                    lista_descricao[j+1]    = temporario
+                    #---Ordenando o valor---#
+                    temporario          = lista_valor[j]
+                    lista_valor[j]      = lista_valor[j+1]
+                    lista_valor[j+1]    = temporario
+                    #---Ordenando o dia---#
+                    temporario      = lista_dia[j]
+                    lista_dia[j]    = lista_dia[j+1]
+                    lista_dia[j+1]  = temporario
+                    #---Ordenando a classificação---#
+                    temporario                  = lista_classificacao[j]
+                    lista_classificacao[j]      = lista_classificacao[j+1]
+                    lista_classificacao[j+1]    = temporario
+                    #---Ordenando o codigo do tipo de despesa---#
+                    temporario                      = lista_codigo_tipo_despesa[j]
+                    lista_codigo_tipo_despesa[j]    = lista_codigo_tipo_despesa[j+1]
+                    lista_codigo_tipo_despesa[j+1]  = temporario
+                    #---Ordenando o codigo da forma de pagamento---#
+                    temporario                          = lista_codigo_forma_pagamento[j]
+                    lista_codigo_forma_pagamento[j]     = lista_codigo_forma_pagamento[j+1]
+                    lista_codigo_forma_pagamento[j+1]   = temporario
+        return lista_codigo, lista_descricao, lista_valor, lista_dia, lista_classificacao, lista_codigo_tipo_despesa, lista_codigo_forma_pagamento
+
+    #---Para caso não seja possível fazer conversões---#
+    except ValueError:
+        print('        | Arquivo corrompido. Não foi possível fazer a conversão.')
+        print('        | ')
+        esperar = input('        | Aperte Enter para continuar..')
+        Gravar.Log('Método Bubble Sort Despesa - Arquivo Consultas: ')
+        sys.exit() 
+
+
+                            #Lista, lista, lista
+def Bubble_Sort_Recebimento(lista_codigo, lista_valor, lista_dia):
+    try:
+        for i in range(len(lista_codigo)-1, 0, -1):
+            for j in range (i):
+                if int(lista_dia[j]) > int(lista_dia[j+1]):
+                    #---Ordenando o código---#
+                    temporario          = lista_codigo[j]
+                    lista_codigo[j]     = lista_codigo[j+1]
+                    lista_codigo[j+1]   = temporario
+                    #---Ordenando o valor---#
+                    temporario          = lista_valor[j]
+                    lista_valor[j]      = lista_valor[j+1]
+                    lista_valor[j+1]    = temporario
+                    #---Ordenando o dia---#
+                    temporario      = lista_dia[j]
+                    lista_dia[j]    = lista_dia[j+1]
+                    lista_dia[j+1]  = temporario
+                    
+        return lista_codigo, lista_valor, lista_dia  
+
+    #---Para caso não seja possível fazer conversões---#
+    except ValueError:
+        print('        | Arquivo corrompido. Não foi possível fazer a conversão.')
+        print('        | ')
+        esperar = input('        | Aperte Enter para continuar..')
+        Gravar.Log('Método Bubble Sort Recebimento - Arquivo Consultas: ')
+        sys.exit()
+
+
+def Resetar():
+    try:
+
+        #---Nomes de arquivos e pastas---#
+        files           = Criptografar.Pastas_Arquivos('Files')
+        despesa         = Criptografar.Pastas_Arquivos('Despesa')
+        recebimento     = Criptografar.Pastas_Arquivos('Recebimento')
+        forma_pagamento = Criptografar.Pastas_Arquivos('Forma Pagamento')
+        tipo_despesa    = Criptografar.Pastas_Arquivos('Tipo Despesa')
+        senha           = Criptografar.Pastas_Arquivos('Senha')
+        logs            = 'Logs'
+        
+        arquivo_forma_pagamento = Criptografar.Pastas_Arquivos('Arquivo Forma Pagamento')
+        arquivo_tipo_despesa    = Criptografar.Pastas_Arquivos('Arquivo Tipo Despesa')
+
+        codigo_tipo_despesa     = Criptografar.Pastas_Arquivos('Codigo Tipo Despesa')
+        codigo_forma_pagamento  = Criptografar.Pastas_Arquivos('Codigo Forma Pagamento')
+        codigo_despesa          = Criptografar.Pastas_Arquivos('Codigo Despesa')
+        codigo_recebimento      = Criptografar.Pastas_Arquivos('Codigo Recebimento')
+
+        #---Excluindo a pasta Files e todo o seu conteúdo---#
+        if os.path.isdir(files) == True:
+            shutil.rmtree(files)
+
+        #---Criação das pastas---#
+        os.mkdir(files)
+        os.mkdir(files + '\\' + despesa)
+        os.mkdir(files + '\\' + recebimento)
+        os.mkdir(files + '\\' + forma_pagamento)
+        os.mkdir(files + '\\' + tipo_despesa)
+        os.mkdir(files + '\\' + senha)
+        os.mkdir(files + '\\' + logs)
+
+        #---Criação dos arquivos---#
+        with open(files + '\\' + despesa + '\\' + codigo_despesa + '.txt', 'w') as Gerar_Arquivo_Despesa:
+            Gerar_Arquivo_Despesa.write(Criptografar.Pastas_Arquivos(str(randint(0,100))))
+
+        with open(files + '\\' + recebimento + '\\' + codigo_recebimento + '.txt', 'w') as Gerar_Arquivo_Recebimento:
+            Gerar_Arquivo_Recebimento.write(Criptografar.Pastas_Arquivos(str(randint(0,100))))
+
+        with open(files + '\\' + tipo_despesa + '\\' + codigo_tipo_despesa + '.txt', 'w') as Gerar_Arquivo_Tipo_Despesa:
+            Gerar_Arquivo_Tipo_Despesa.write(Criptografar.Pastas_Arquivos(str(randint(0,50))))
+
+        with open(files + '\\' + forma_pagamento + '\\' + codigo_forma_pagamento + '.txt', 'w') as Gerar_Arquivo_Forma_Pagamento:
+            Gerar_Arquivo_Forma_Pagamento.write(Criptografar.Pastas_Arquivos(str(randint(0,50))))
+
+        open(files + '\\' + tipo_despesa + '\\' + arquivo_tipo_despesa + '.txt', 'w')
+        open(files + '\\' + forma_pagamento + '\\' + arquivo_forma_pagamento + '.txt', 'w')
+
+        Criptografar.Senha('12345678')  
+
+    except Exception as erro:
+        print('        | ')
+        print('        | Ocorreu um erro na execução do método. Verifique o Log')
+        esperar = input('        | Aperte Enter para continuar..')
+        Gravar.Log('Método Resetar - Arquivo Pastas Arquivos: ' + str(erro))
+        sys.exit()
+        
+
+#---Classes---#
+class Consultar:
+
+               #Boolean, string, string, string
+    def Despesa(exclusao, mes, ano, filtro):
+        files   =   Criptografar.Pastas_Arquivos('Files')
+        despesa =   Criptografar.Pastas_Arquivos('Despesa')
+        ano     =   Criptografar.Pastas_Arquivos(ano)
+        mes     =   Criptografar.Pastas_Arquivos(mes)
+
+        try:
+            with open(files + '\\' + despesa + '\\' + ano + '\\' + mes + '.txt', 'r') as Ler_Arquivo_Despesa:
+                lista_arquivo                       =   []
+                lista_codigo                        =   []
+                lista_descricao                     =   []
+                lista_valor                         =   []
+                lista_dia                           =   []
+                lista_classificacao                 =   []
+                lista_codigo_tipo_despesa           =   []
+                lista_codigo_forma_pagamento        =   []
+                lista_descricao_tipo_despesa        =   []
+                lista_descricao_forma_pagamento     =   []
+                
+                arquivo = Ler_Arquivo_Despesa.readlines()
+
+                    
+                for bloco in arquivo:
+                    lista_arquivo = Descriptografar.Despesa(bloco)
+                    lista_codigo.append                 (lista_arquivo[0])
+                    lista_descricao.append              (lista_arquivo[1])
+                    lista_valor.append                  (lista_arquivo[2])
+                    lista_dia.append                    (lista_arquivo[3])
+                    lista_classificacao.append          (lista_arquivo[4])    
+                    lista_codigo_tipo_despesa.append    (lista_arquivo[5])
+                    lista_codigo_forma_pagamento.append (lista_arquivo[6])
+
+
+            #---Ordenando com base no dia---#
+            lista_codigo, lista_descricao, lista_valor, lista_dia, lista_classificacao, lista_codigo_tipo_despesa, lista_codigo_forma_pagamento = Bubble_Sort_Despesa(lista_codigo, lista_descricao, lista_valor, lista_dia, lista_classificacao, lista_codigo_tipo_despesa, lista_codigo_forma_pagamento)
+
+                                                                                                            #Alteração, consulta_para_despesa
+            lista_todos_codigo_tipo_despesa, lista_todos_descricao_tipo_despesa         = Consultar.Tipo_Despesa(False, True)
+                                                                                                                #Alteração, pagamento_parcelado, consulta_para_despesa
+            lista_todos_codigo_forma_pagamento, lista_todos_descricao_forma_pagamento   = Consultar.Forma_Pagamento(False, False, True)
+            
+            lista_codigo_consulta                       =   []
+            lista_descricao_consulta                    =   []
+            lista_valor_consulta                        =   []
+            lista_dia_consulta                          =   []
+            lista_classificacao_consulta                =   []
+            lista_descricao_tipo_despesa_consulta       =   []
+            lista_descricao_forma_pagamento_consulta    =   []
+
+            variavel_codigo                     =   ''
+            variavel_descricao                  =   ''
+            variavel_valor                      =   ''
+            variavel_dia                        =   ''
+            variavel_classificacao              =   ''
+            variavel_descricao_tipo_despesa     =   ''
+            variavel_descricao_forma_pagamento  =   ''
+
+            #---Alinhando as descrições de forma de pagamento e tipo de despesa com seus respectivos códigos---#
+            for i in range(len(lista_codigo)):
+                #---Adicionando as descrições correspondentes do tipo de despesa---#
+                index_codigo_tipo_despesa   =   lista_todos_codigo_tipo_despesa.index(lista_codigo_tipo_despesa[i])
+                lista_descricao_tipo_despesa.append(lista_todos_descricao_tipo_despesa[index_codigo_tipo_despesa])
+
+                #---Adicionando as decrições correspondentes da forma de pagamento---#
+                index_codigo_forma_pagamento    =   lista_todos_codigo_forma_pagamento.index(lista_codigo_forma_pagamento[i])
+                lista_descricao_forma_pagamento.append(lista_todos_descricao_forma_pagamento[index_codigo_forma_pagamento])
+
+
+            #---Ajustando o tamanho das variáveis para impressão na tela---#
+            for i in range(len(lista_codigo)):
+
+                #---Criando consulta dos códigos---#
+                variavel_codigo = lista_codigo[i]
+                while len(variavel_codigo) < 5:
+                    variavel_codigo = '0' + variavel_codigo
+                while len(variavel_codigo) < 7:
+                    variavel_codigo = variavel_codigo + ' '
+                variavel_codigo = '| ' + variavel_codigo
+                lista_codigo_consulta.append(variavel_codigo)
+
+                #---Criando consulta das descrições---#
+                variavel_descricao = lista_descricao[i]
+                while len(variavel_descricao) < 32:
+                    variavel_descricao += ' '
+                lista_descricao_consulta.append(variavel_descricao)
+
+                #---Criando consulta dos valores---#
+                variavel_valor = lista_valor[i]
+                while len(variavel_valor) < 10:
+                    variavel_valor += ' '
+                lista_valor_consulta.append(variavel_valor)
+
+                #---Criando consulta dos dias---#
+                variavel_dia = lista_dia[i]
+                variavel_dia += '  '
+                lista_dia_consulta.append(variavel_dia)
+
+                #---Criando consulta das classificações---#
+                if lista_classificacao[i] == '0':                
+                    variavel_classificacao = 'não'
+                else:
+                    variavel_classificacao = 'sim'
+                variavel_classificacao += '   '
+                lista_classificacao_consulta.append(variavel_classificacao)
+
+                #---Criando consulta da descrição do tipo de despesa---#
+                variavel_descricao_tipo_despesa = lista_descricao_tipo_despesa[i]
+                while len(variavel_descricao_tipo_despesa) < 21:
+                    variavel_descricao_tipo_despesa += ' '
+                lista_descricao_tipo_despesa_consulta.append(variavel_descricao_tipo_despesa)
+
+                #---Criando consulta da descrição da forma de pagamento---#
+                variavel_descricao_forma_pagamento = lista_descricao_forma_pagamento[i]
+                while len(variavel_descricao_forma_pagamento) < 22:
+                    variavel_descricao_forma_pagamento += ' '
+                variavel_descricao_forma_pagamento += ' |'
+                lista_descricao_forma_pagamento_consulta.append(variavel_descricao_forma_pagamento)
+
+            print('        |   _________________________________________________________________________________________________________')
+            print('        |   |                                                                                                       |')
+            print('        |   | Codigo  Descrição                        Valor     Dia   Tipo de Despesa       Forma de Pagamento     |')
+            print('        |   |_______________________________________________________________________________________________________|')
+            soma_valor = 0
+            #---Mostrar apenas despesas fixas---#
+            if (filtro == '01'):
+                for i in range(len(lista_codigo)):
+                    Esperar_Relatorio()
+                    if (lista_classificacao[i] == '0'):
+                        print('        |  ', lista_codigo_consulta[i], lista_descricao_consulta[i], lista_valor_consulta[i], lista_dia_consulta[i], lista_descricao_tipo_despesa_consulta[i], lista_descricao_forma_pagamento_consulta[i])
+                        soma_valor += float(lista_valor[i])
+            #---Mostrar apenas despesas variáveis---#
+            elif (filtro == '02'):
+                for i in range(len(lista_codigo)):
+                    Esperar_Relatorio()
+                    if (lista_classificacao[i] == '1'):
+                        print('        |  ', lista_codigo_consulta[i], lista_descricao_consulta[i], lista_valor_consulta[i], lista_dia_consulta[i], lista_descricao_tipo_despesa_consulta[i], lista_descricao_forma_pagamento_consulta[i])
+                        soma_valor += float(lista_valor[i])
+            #---Mostrar todas as despesas---#
+            else:
+                for i in range(len(lista_codigo)):
+                    Esperar_Relatorio()
+                    print('        |  ', lista_codigo_consulta[i], lista_descricao_consulta[i], lista_valor_consulta[i], lista_dia_consulta[i], lista_descricao_tipo_despesa_consulta[i], lista_descricao_forma_pagamento_consulta[i])
+                    soma_valor += float(lista_valor[i])
+
+            print_soma = '        |   |         Total                         R$ ' + "%.2f" % soma_valor
+            while len(print_soma) < 116:
+                print_soma += ' '
+            print_soma += '|'
+                
+            print('        |   |-------------------------------------------------------------------------------------------------------|')
+            if exclusao == False:
+                print(print_soma)
+                print('        |   |-------------------------------------------------------------------------------------------------------|')
+
+            if exclusao == True:
+                return lista_codigo, lista_descricao, lista_valor, lista_dia, lista_classificacao, lista_codigo_tipo_despesa, lista_codigo_forma_pagamento
+            else:
+                return soma_valor
+
+        #---Para caso não seja possível fazer conversões---#
+        except ValueError:
+            print('        | Arquivo corrompido. Não foi possível fazer a conversão.')
+            print('        | ')
+            esperar = input('        | Aperte Enter para continuar..')
+            Gravar.Log('Método Despesa - Arquivo Consultas: ')
+            sys.exit() 
+
+        except Exception as erro:
+            print('        | Ocorreu um erro na execução do método: Verifique o Log')
+            esperar = input('        | Aperte Enter para continuar..')
+            Gravar.Log('Método Despesa  - Arquivo Consultas: ' + str(erro))
+            sys.exit()
+
+                        #Boolean, Boolean, Boolean
+    def Forma_Pagamento(alteracao, pagamento_parcelado, consulta_para_despesa):
+        files = Criptografar.Pastas_Arquivos('Files')
+        forma_pagamento = Criptografar.Pastas_Arquivos('Forma Pagamento')
+        arquivo_forma_pagamento = Criptografar.Pastas_Arquivos('Arquivo Forma Pagamento')
+
+        try:
+            with open(files + '\\' + forma_pagamento + '\\' + arquivo_forma_pagamento + '.txt', 'r') as Ler_Arquivo_Forma_Pagamento:
+                lista_arquivo = []
+                lista_codigo = []
+                lista_descricao = []
+                lista_pagamento_parcelado = []
+                lista_status = []
+                arquivo = Ler_Arquivo_Forma_Pagamento.readlines()
+                #---Se for para alteração de registros---#
+                if (alteracao == True):
+                    for bloco in arquivo:
+                        lista_arquivo = Descriptografar.Forma_Pagamento(bloco)
+                        if len(lista_arquivo[0]) < 2:
+                            lista_arquivo[0] = '0' + lista_arquivo[0]
+                        lista_codigo.append(lista_arquivo[0])
+                        lista_descricao.append(lista_arquivo[1])
+                        lista_pagamento_parcelado.append(lista_arquivo[2])
+                        lista_status.append(lista_arquivo[3])
+
+                elif (alteracao == False) and (consulta_para_despesa == True):
+                    for bloco in arquivo:
+                        lista_arquivo = Descriptografar.Forma_Pagamento(bloco)
+                        if len(lista_arquivo[0]) < 2:
+                            lista_arquivo[0] = '0' + lista_arquivo[0]
+                        lista_codigo.append(lista_arquivo[0])
+                        lista_descricao.append(lista_arquivo[1])
+                        lista_pagamento_parcelado.append(lista_arquivo[2])
+                        lista_status.append(lista_arquivo[3])
+                        
+                #---Se for apenas para consulta---#
+                else:
+                    for bloco in arquivo:
+                        lista_arquivo = Descriptografar.Forma_Pagamento(bloco)
+                        #---Para pagamentos parcelados---#
+                        if (pagamento_parcelado == True):
+                            if (lista_arquivo[2] == '1' and lista_arquivo[3] == '1'):
+                                if len(lista_arquivo[0]) < 2:
+                                    lista_arquivo[0] = '0' + lista_arquivo[0]
+                                lista_codigo.append(lista_arquivo[0])
+                                lista_descricao.append(lista_arquivo[1])
+                                lista_pagamento_parcelado.append(lista_arquivo[2])
+                                lista_status.append(lista_arquivo[3])
+                        #---Para pagamentos a vista---#
+                        else:
+                            if (lista_arquivo[2] == '0' and lista_arquivo[3] == '1'):
+                                if len(lista_arquivo[0]) < 2:
+                                    lista_arquivo[0] = '0' + lista_arquivo[0]
+                                lista_codigo.append(lista_arquivo[0])
+                                lista_descricao.append(lista_arquivo[1])
+                                lista_pagamento_parcelado.append(lista_arquivo[2])
+                                lista_status.append(lista_arquivo[3])
+
+            if (alteracao == False) and (consulta_para_despesa == True):
+                return lista_codigo, lista_descricao
+
+            lista_codigo_consulta = []
+            lista_descricao_consulta = []
+            lista_pagamento_parcelado_consulta = []
+            lista_status_consulta = []
+
+            variavel_codigo = ''
+            variavel_descricao = ''
+            variavel_pagamento_parcelado = ''
+            variavel_status = ''
+            for i in range(len(lista_codigo)):
+
+                #---Criando consulta dos códigos---#
+                variavel_codigo = '|   ' + lista_codigo[i]
+                while len(variavel_codigo) < 10:
+                    variavel_codigo = variavel_codigo + ' '
+                lista_codigo_consulta.append(variavel_codigo)
+
+                if (alteracao == True):
+                    #---Criando consulta das descrições---#
+                    variavel_descricao = lista_descricao[i]
+                    while len(variavel_descricao) < 35:
+                        variavel_descricao = variavel_descricao + ' '
+                    lista_descricao_consulta.append(variavel_descricao)
+
+                    #---Criando consulta do pagamento parcelado---#
+                    if lista_pagamento_parcelado[i] == '0':
+                        variavel_pagamento_parcelado = 'não'
+                    else:
+                        variavel_pagamento_parcelado = 'sim'
+                    variavel_pagamento_parcelado += '      '
+                    lista_pagamento_parcelado_consulta.append(variavel_pagamento_parcelado)
+
+                    #---Criando consulta do status---#
+                    if lista_status[i] == '0':
+                        variavel_status = 'não'
+                    else:
+                        variavel_status = 'sim'
+                    variavel_status += '  |'
+                    lista_status_consulta.append(variavel_status)
+                else:
+                    #---Criando consulta das descrições---#
+                    variavel_descricao = lista_descricao[i]
+                    while len(variavel_descricao) < 33:
+                        variavel_descricao = variavel_descricao + ' '
+                    lista_descricao_consulta.append(variavel_descricao) 
+
+            if (alteracao == True):
+                print('        |   _______________________________________________________________')
+                Esperar_Relatorio()
+                print('        |   | Código   Descrição                        Parcelado   Ativo |')
+                Esperar_Relatorio()
+                print('        |   |-------------------------------------------------------------|')
+                for i in range(len(lista_codigo)):
+                    Esperar_Relatorio()
+                    print('        |  ', lista_codigo_consulta[i], lista_descricao_consulta[i], lista_pagamento_parcelado_consulta[i], lista_status_consulta[i])
+                print('        |   |_____________________________________________________________|')
+
+            else:
+                print('        |   ______________________________________________')
+                Esperar_Relatorio()
+                print('        |   | Código   Descrição                         |')
+                Esperar_Relatorio()
+                print('        |   |--------------------------------------------|')
+                for i in range(len(lista_codigo)):
+                    Esperar_Relatorio()
+                    print('        |  ', lista_codigo_consulta[i], lista_descricao_consulta[i], '|')
+                print('        |   |____________________________________________|')
+
+            if (alteracao == True):
+                return lista_codigo, lista_descricao, lista_pagamento_parcelado, lista_status
+            else:
+                return lista_codigo
+            
+        #---Para caso não seja possível fazer conversões---#
+        except ValueError:
+            print('        | Arquivo corrompido. Não foi possível fazer a conversão.')
+            print('        | ')
+            esperar = input('        | Aperte Enter para continuar..')
+            Gravar.Log('Método Forma Pagamento - Arquivo Consultas: ')
+            sys.exit() 
+
+        except Exception as erro:
+            print('        | Ocorreu um erro na execução do método: Verifique o Log')
+            esperar = input('        | Aperte Enter para continuar..')
+            Gravar.Log('Método Forma Pagamento  - Arquivo Consultas: ' + str(erro))
+            sys.exit()
+            
+
+                    #Boolean, string, string, Boolean
+    def Recebimento(exclusao, mes, ano, consulta_apenas_saldo):
+        files           =   Criptografar.Pastas_Arquivos('Files')
+        recebimento     =   Criptografar.Pastas_Arquivos('Recebimento')
+        ano             =   Criptografar.Pastas_Arquivos(ano)
+        mes             =   Criptografar.Pastas_Arquivos(mes)
+
+        try:
+            with open(files + '\\' + recebimento + '\\' + ano + '\\' + mes + '.txt', 'r') as Ler_Arquivo_Recebimento:
+                lista_arquivo   =   []
+                lista_codigo    =   []
+                lista_valor     =   []
+                lista_dia       =   []
+
+                arquivo = Ler_Arquivo_Recebimento.readlines()
+                for bloco in arquivo:
+                    lista_arquivo = Descriptografar.Recebimento(bloco)
+                    lista_codigo.append                 (lista_arquivo[0])
+                    lista_valor.append                  (lista_arquivo[1])
+                    lista_dia.append                    (lista_arquivo[2])
+                        
+            if (consulta_apenas_saldo == True):
+                soma_valor = 0
+                for i in range(len(lista_valor)):
+                    soma_valor += float(lista_valor[i])
+                return soma_valor
+
+            #---Ordenando com base no dia---#
+            lista_codigo, lista_valor, lista_dia = Bubble_Sort_Recebimento(lista_codigo, lista_valor, lista_dia)
+
+            lista_codigo_consulta       =   []
+            lista_valor_consulta        =   []
+            lista_dia_consulta          =   []
+
+            variavel_codigo     =   ''
+            variavel_valor      =   ''
+            variavel_dia        =   ''
+
+            #---Ajustando o tamanho das variáveis para impressão na tela---#
+            for i in range(len(lista_codigo)):
+
+                #---Criando consulta dos códigos---#
+                variavel_codigo = lista_codigo[i]
+                while len(variavel_codigo) < 5:
+                    variavel_codigo = '0' + variavel_codigo
+                while len(variavel_codigo) < 15:
+                    variavel_codigo = variavel_codigo + ' '
+                variavel_codigo = '| ' + variavel_codigo
+                lista_codigo_consulta.append(variavel_codigo)
+
+                #---Criando consulta dos valores---#
+                variavel_valor = lista_valor[i]
+                while len(variavel_valor) < 14:
+                    variavel_valor += ' '
+                lista_valor_consulta.append(variavel_valor)
+
+                #---Criando consulta dos dias---#
+                variavel_dia = lista_dia[i]
+                variavel_dia += '  |'
+                lista_dia_consulta.append(variavel_dia)
+
+            print('        |   ______________________________________')
+            print('        |   |                                    |')
+            print('        |   | Codigo          Valor          Dia |')
+            print('        |   |____________________________________|')
+            soma_valor = 0
+
+            for i in range(len(lista_codigo)):
+                Esperar_Relatorio()
+                print('        |  ', lista_codigo_consulta[i], lista_valor_consulta[i], lista_dia_consulta[i])
+                soma_valor += float(lista_valor[i])
+
+            print('        |   |------------------------------------|')      
+            if exclusao == False:     
+                print('        |   | Total        R$ ' + "%.2f" % soma_valor)
+                print('        |')
+                
+            elif consulta_apenas_saldo == True:
+                return soma_valor
+            
+            else:
+                return lista_codigo, lista_valor, lista_dia
+
+        #---Para caso não seja possível fazer conversões---#
+        except ValueError:
+            print('        | Arquivo corrompido. Não foi possível fazer a conversão.')
+            print('        | ')
+            esperar = input('        | Aperte Enter para continuar..')
+            Gravar.Log('Método Recebimento - Arquivo Consultas: ')
+            sys.exit() 
+
+        except Exception as erro:
+            print('        | Ocorreu um erro na execução do método: Verifique o Log')
+            esperar = input('        | Aperte Enter para continuar..')
+            Gravar.Log('Método Recebimento  - Arquivo Consultas: ' + str(erro))
+            sys.exit()
+            
+
+                    #Boolean, Boolean
+    def Tipo_Despesa(alteracao, consulta_para_despesa):
+        files = Criptografar.Pastas_Arquivos('Files')
+        tipo_despesa = Criptografar.Pastas_Arquivos('Tipo Despesa')
+        arquivo_tipo_despesa = Criptografar.Pastas_Arquivos('Arquivo Tipo Despesa')
+
+        try:
+            with open(files + '\\' + tipo_despesa + '\\' + arquivo_tipo_despesa + '.txt', 'r') as Ler_Arquivo_Tipo_Despesa:
+                lista_arquivo = []
+                lista_codigo = []
+                lista_descricao = []
+                lista_status = []
+                arquivo = Ler_Arquivo_Tipo_Despesa.readlines()
+                if (alteracao == True):
+                    for bloco in arquivo:
+                        lista_arquivo = Descriptografar.Tipo_Despesa(bloco)
+                        if len(lista_arquivo[0]) < 2:
+                            lista_arquivo[0] = '0'  + lista_arquivo[0]
+                        lista_codigo.append(lista_arquivo[0])
+                        lista_descricao.append(lista_arquivo[1])
+                        lista_status.append(lista_arquivo[2])
+
+                elif (alteracao == False) and (consulta_para_despesa == True):
+                    for bloco in arquivo:
+                        lista_arquivo = Descriptografar.Tipo_Despesa(bloco)
+                        if len(lista_arquivo[0]) < 2:
+                            lista_arquivo[0] = '0'  + lista_arquivo[0]
+                        lista_codigo.append(lista_arquivo[0])
+                        lista_descricao.append(lista_arquivo[1])
+                        lista_status.append(lista_arquivo[2])  
+                    
+                else:
+                    for bloco in arquivo:
+                        lista_arquivo = Descriptografar.Tipo_Despesa(bloco)
+                        if (lista_arquivo[2] == '1'):
+                            if len(lista_arquivo[0]) < 2:
+                                lista_arquivo[0] = '0'  + lista_arquivo[0]
+                            lista_codigo.append(lista_arquivo[0])
+                            lista_descricao.append(lista_arquivo[1])
+                            lista_status.append(lista_arquivo[2])
+
+            if (alteracao == False) and (consulta_para_despesa == True):
+                return lista_codigo, lista_descricao
+
+            lista_codigo_consulta = []
+            lista_descricao_consulta = []
+            lista_status_consulta = []
+
+            variavel_codigo = ''
+            variavel_descricao = ''
+            variaevl_status = ''
+                
+            for i in range(len(lista_codigo)):
+
+                #---Criando consulta dos códigos---#
+                variavel_codigo = '|   ' + lista_codigo[i]
+                while len(variavel_codigo) < 10:
+                    variavel_codigo = variavel_codigo + ' '
+                lista_codigo_consulta.append(variavel_codigo)
+
+                if (alteracao == True):
+                    #---Criando consulta das descrições---#
+                    variavel_descricao = lista_descricao[i]
+                    while len(variavel_descricao) < 40:
+                        variavel_descricao = variavel_descricao + ' '
+                    lista_descricao_consulta.append(variavel_descricao)
+                
+                    #---Criando consulta dos status---#
+                    if lista_status[i] == '0':
+                        variavel_status = 'não'
+                    else:
+                        variavel_status = 'sim'
+                    variavel_status += '  |'
+                    lista_status_consulta.append(variavel_status)
+                else:
+                    #---Criando consulta das descrições---#
+                    variavel_descricao = lista_descricao[i]
+                    while len(variavel_descricao) < 38:
+                        variavel_descricao = variavel_descricao + ' '
+                    lista_descricao_consulta.append(variavel_descricao)
+
+            if (alteracao == True):
+                print('        |   __________________________________________________________')
+                Esperar_Relatorio()
+                print('        |   | Código   Descrição                               Ativo |')
+                Esperar_Relatorio()
+                print('        |   |--------------------------------------------------------|')
+
+                for i in range(len(lista_codigo)):
+                    Esperar_Relatorio()
+                    print('        |  ', lista_codigo_consulta[i], lista_descricao_consulta[i], lista_status_consulta[i])
+                print('        |   |________________________________________________________|')
+                
+            else:
+                print('        |   ___________________________________________________')
+                Esperar_Relatorio()
+                print('        |   | Código   Descrição                              |')
+                Esperar_Relatorio()
+                print('        |   |-------------------------------------------------|')
+
+                for i in range(len(lista_codigo)):
+                    Esperar_Relatorio()
+                    print('        |  ', lista_codigo_consulta[i], lista_descricao_consulta[i], '|')
+                print('        |   |_________________________________________________|')
+                
+        
+            if (alteracao == True):
+                return lista_codigo, lista_descricao, lista_status
+            else:
+                return lista_codigo
+
+        #---Para caso não seja possível fazer conversões---#
+        except ValueError:
+            print('        | Arquivo corrompido. Não foi possível fazer a conversão.')
+            print('        | ')
+            esperar = input('        | Aperte Enter para continuar..')
+            Gravar.Log('Método Tipo Despesa - Arquivo Consultas: ')
+            sys.exit() 
+
+        except Exception as erro:
+            print('        | Ocorreu um erro na execução do método: Verifique o Log')
+            esperar = input('        | Aperte Enter para continuar..')
+            Gravar.Log('Método Tipo Despesa  - Arquivo Consultas: ' + str(erro))
+            sys.exit()
+
+
+class Criptografar:
+    def Despesa(codigo, descricao, valor, dia, classificacao, tipo_despesa, forma_pagamento):
+        try:
+            informacao_criptografada = ''
+
+            valor = valor[0:-3] + valor[-2:]
+
+            #---Posição 0 a 6---#
+            for i in range(0,5):
+                informacao_criptografada += str(randint(0,9))
+
+            #---Posição 7 a 8---#
+            if len(codigo) < 10:
+                informacao_criptografada += Criptografar.Caracteres('0')
+            informacao_criptografada += Criptografar.Caracteres(str(len(codigo)))
+
+            #---Posição 9 a 18---#
+            informacao_criptografada += Criptografar.Caracteres(codigo)
+            while len(informacao_criptografada) < 19:
+                informacao_criptografada += str(randint(0,9))
+
+            #---Posição 19 a 23---#
+            for i in range(0,5):
+                informacao_criptografada += str(randint(0,9))
+
+            #---Posição 24 a 27---#
+            if len(descricao) < 10:
+                informacao_criptografada += Criptografar.Caracteres('0')
+            informacao_criptografada += Criptografar.Caracteres(str(len(descricao)))
+
+            #---Posição 28 a 87---#
+            informacao_criptografada += Criptografar.Caracteres(descricao)
+            while len(informacao_criptografada) < 88:
+                informacao_criptografada += str(randint(0,9))
+
+            #---Posição 88 a 92---#
+            for i in range(0,5):
+                informacao_criptografada += str(randint(0,9))
+
+            #---Posição 93 a 94---#
+            informacao_criptografada += Criptografar.Caracteres(str(len(valor)))
+            
+
+            #---Posição 95 a 108---#
+            informacao_criptografada += Criptografar.Caracteres(valor)
+            while len(informacao_criptografada) < 109:
+                informacao_criptografada += str(randint(0,9))
+
+            #---Posição 109 a 112---#
+            if len(dia) < 2:
+                informacao_criptografada += Criptografar.Caracteres('0')
+            informacao_criptografada += Criptografar.Caracteres(dia)
+
+            #---Posição 113 a 117---#
+            for i in range(0,5):
+                informacao_criptografada += str(randint(0,9))
+
+            #---Posição 118 a 119---#
+            informacao_criptografada += Criptografar.Caracteres(classificacao)
+
+            #---Posição 120 a 123---#
+            if len(tipo_despesa) < 2:
+                informacao_criptografada += Criptografar.Caracteres('0')
+            informacao_criptografada += Criptografar.Caracteres(tipo_despesa)
+
+            #---Posição 124 a 128---#
+            for i in range(0,5):
+                informacao_criptografada += str(randint(0,9))
+
+            #---Posição 129 a 132---#
+            if len(forma_pagamento) < 2:
+                informacao_criptografada += Criptografar.Caracteres('0')
+            informacao_criptografada += Criptografar.Caracteres(forma_pagamento)
+
+            #---Posição 133 a 149---#
+            while len(informacao_criptografada) < 150:
+                informacao_criptografada += str(randint(0,9))
+
+            return informacao_criptografada
+
+        #---Para caso não seja possível fazer conversões---#
+        except ValueError:
+            print('        | Arquivo corrompido. Não foi possível fazer a conversão.')
+            print('        | ')
+            esperar = input('        | Aperte Enter para continuar..')
+            Gravar.Log('Método Criptografar - Arquivo Despesa: ')
+            sys.exit() 
+
+        except Exception as erro:
+            print('\nOcorreu um erro na execução do método. Verifique o Log')
+            esperar = input('Aperte Enter para continuar..')
+            Gravar.Log('Método Criptografar - Arquivo Despesa: ' + str(erro))
+            sys.exit()
+
+
+    def Forma_Pagamento(codigo, descricao, pagamento_parcelado, status):
+        try:
+            informacao_criptografada = ''
+
+            #---Posição 0 a 6---#
+            for i in range(0,5):
+                informacao_criptografada += str(randint(0,9))
+
+            #---Posição 7 a 8---#
+            if len(codigo) < 10:
+                informacao_criptografada += Criptografar.Caracteres('0')
+            informacao_criptografada += Criptografar.Caracteres(str(len(codigo)))
+
+            #---Posição 9 a 12---#
+            informacao_criptografada += Criptografar.Caracteres(codigo)
+            while len(informacao_criptografada) < 13:
+                informacao_criptografada += str(randint(0,9))
+
+            #---Posição 13 a 17---#
+            for i in range(0,5):
+                informacao_criptografada += str(randint(0,9))
+
+            #---Posição 18 a 21---#
+            if len(descricao) < 10:
+                informacao_criptografada += Criptografar.Caracteres('0')
+            informacao_criptografada += Criptografar.Caracteres(str(len(descricao)))
+
+            #---Posição 22 a 65---#
+            informacao_criptografada += Criptografar.Caracteres(descricao)
+            while len(informacao_criptografada) < 66:
+                informacao_criptografada += str(randint(0,9))
+
+            #---Posição 66 a 67---#
+            informacao_criptografada += Criptografar.Caracteres(pagamento_parcelado)
+
+            #---Posição 68 a 72---#
+            for i in range(0,5):
+                informacao_criptografada += str(randint(0,9))
+
+            #---Posição 73 a 74---#
+            informacao_criptografada += Criptografar.Caracteres(status)
+
+            #---Posição 75 a 149---#
+            while len(informacao_criptografada) < 150:
+                informacao_criptografada += str(randint(0,9))
+
+            return informacao_criptografada
+        
+
+        #---Para caso não seja possível fazer conversões---#
+        except ValueError:
+            print('        | Arquivo corrompido. Não foi possível fazer a conversão.')
+            print('        | ')
+            esperar = input('        | Aperte Enter para continuar..')
+            Gravar.Log('Método Criptografar - Arquivo Forma Pagamento: ')
+            sys.exit() 
+        
+        except Exception as erro:
+            print('        | ')
+            print('        | Ocorreu um erro na execução do método. Verifique o Log')
+            esperar = input('        | Aperte Enter para continuar..')
+            Gravar.Log('Método Criptografar - Arquivo Forma Pagamento: ' + str(erro))
+            sys.exit()
+            
+
+    def Recebimento(codigo, valor, dia):
+        try:
+            informacao_criptografada = ''
+
+            valor = valor[0:-3] + valor[-2:]
+
+            #---Posição 0 a 6---#
+            for i in range(0,5):
+                informacao_criptografada += str(randint(0,9))
+
+            #---Posição 7 a 8---#
+            if len(codigo) < 10:
+                informacao_criptografada += Criptografar.Caracteres('0')
+            informacao_criptografada += Criptografar.Caracteres(str(len(codigo)))
+
+            #---Posição 9 a 16---#
+            informacao_criptografada += Criptografar.Caracteres(codigo)
+            while len(informacao_criptografada) < 17:
+                informacao_criptografada += str(randint(0,9))
+
+            #---Posição 17 a 21---#
+            for i in range(0,5):
+                informacao_criptografada += str(randint(0,9))
+
+            #---Posição 22 a 23---#
+            informacao_criptografada += Criptografar.Caracteres(str(len(valor)))
+
+            #---Posição 24 a 37---#
+            informacao_criptografada += Criptografar.Caracteres(valor)
+            while len(informacao_criptografada) < 38:
+                informacao_criptografada += str(randint(0,9))
+
+            #---Posição 38 a 41---#
+            if len(dia) < 2:
+                informacao_criptografada += Criptografar.Caracteres('0')
+            informacao_criptografada += Criptografar.Caracteres(dia)
+
+            #---Posição 42 a 149---#
+            while len(informacao_criptografada) < 150:
+                informacao_criptografada += str(randint(0,9))
+
+            return informacao_criptografada
+
+        #---Para caso não seja possível fazer conversões---#
+        except ValueError:
+            print('        | Arquivo corrompido. Não foi possível fazer a conversão.')
+            print('        | ')
+            esperar = input('        | Aperte Enter para continuar..')
+            Gravar.Log('Método Criptografar - Arquivo Recebimento: ')
+            sys.exit() 
+        
+        except Exception as erro:
+            print('\nOcorreu um erro na execução do método. Verifique o Log')
+            esperar = input('Aperte Enter para continuar..')
+            Gravar.Log('Método Criptografar - Arquivo Recebimento: ' + str(erro))
+            sys.exit()
+
+
+    def Senha(senha_descriptografada):
+        try:
+            files = Criptografar.Pastas_Arquivos('Files')
+            senha = Criptografar.Pastas_Arquivos('Senha')
+            with open(files + '\\' + senha + '\\' + senha + '.txt', 'w') as Arquivo_Senha:
+                contador_inicial_aleatorio = 0
+                contador_final_aleatorio = 148
+                digito_gravar = -1
+                
+                #---Linha 1---#
+                for i in range(150):
+                    Arquivo_Senha.write(str(randint(0,9)))
+                Arquivo_Senha.write('\n')
+
+                #---Linha 2 a 9---#
+                for i in range(8):
+                    digito_gravar += 1
+                    contador_inicial_aleatorio += 2
+                    contador_final_aleatorio -= 2
+                    for i in range(contador_inicial_aleatorio):
+                        Arquivo_Senha.write(str(randint(0,9)))
+                    Arquivo_Senha.write(Criptografar.Caracteres(senha_descriptografada[digito_gravar]))
+                    for i in range(contador_final_aleatorio):
+                        Arquivo_Senha.write(str(randint(0,9)))
+                    Arquivo_Senha.write('\n')
+
+                #---Linha 10---#
+                for i in range(150):
+                    Arquivo_Senha.write(str(randint(0,9)))
+                    
+        except Exception as erro:
+            print('        | Ocorreu um erro na execução do método. Verifique o Log')
+            esperar = input('        | Aperte Enter para continuar..')
+            Gravar.Log('Método Criptografar - Arquivo Senha: ')
+            sys.exit()
+
+
+    def Tipo_Despesa(codigo, descricao, status):
+        try:
+            informacao_criptografada = ''
+
+            #---Posição 0 a 6---#
+            for i in range(0,5):
+                informacao_criptografada += str(randint(0,9))
+
+            #---Posição 7 a 8---#
+            if len(codigo) < 10:
+                informacao_criptografada += Criptografar.Caracteres('0')
+            informacao_criptografada += Criptografar.Caracteres(str(len(codigo)))
+
+            #---Posição 9 a 12---#
+            informacao_criptografada += Criptografar.Caracteres(codigo)
+            while len(informacao_criptografada) < 13:
+                informacao_criptografada += str(randint(0,9))
+
+            #---Posição 13 a 17---#
+            for i in range(0,5):
+                informacao_criptografada += str(randint(0,9))
+
+            #---Posição 18 a 21---#
+            if len(descricao) < 10:
+                informacao_criptografada += Criptografar.Caracteres('0')
+            informacao_criptografada += Criptografar.Caracteres(str(len(descricao)))
+
+            #---Posição 22 a 61---#
+            informacao_criptografada += Criptografar.Caracteres(descricao)
+            while len(informacao_criptografada) < 62:
+                informacao_criptografada += str(randint(0,9))
+
+            #---Posição 62 a 63---#
+            informacao_criptografada += Criptografar.Caracteres(status)
+
+            #---Posição 64 a 149---#
+            while len(informacao_criptografada) < 150:
+                informacao_criptografada += str(randint(0,9))
+            
+            return informacao_criptografada
+
+        #---Para caso não seja possível fazer conversões---#
+        except ValueError:
+            print('        | Arquivo corrompido. Não foi possível fazer a conversão.')
+            print('        | ')
+            esperar = input('        | Aperte Enter para continuar..')
+            Gravar.Log('Método Criptografar - Arquivo Tipo Despesa: ')
+            sys.exit() 
+        
+        except Exception as erro:
+            print('        |')
+            print('        | Ocorreu um erro na execução do método. Verifique o Log')
+            esperar = input('        | Aperte Enter para continuar..')
+            Gravar.Log('Método Criptografar - Arquivo Tipo Despesa: ' + str(erro))
+            sys.exit()
+
+
+    def Pastas_Arquivos(informacao):
+        Caracteres = ['Ù', 'N', 'á', 'U', 'W', '3', 'x', 'V', 'i', 'Ò', 'Í', '4', 'u', '6', 'I', 'G', 'Ì', 'H', '/', 'É', 'ã', 'ó', 'R', 'n', 'ô', 'Ñ', 'ù', 'E', 'À', 'Ç', 'd', '1', 'Q', 'ñ', 'à', 's', 'h', 'v', 'a', 'X', 'Y', 'é', 'o', 'F', 'l', 'r', '2', 'y', 'J', 'b', 'Ã', 'T', 'D', 'K', 'A', 'È', 'Ô', 'Á', 'c', 'Z', 'M', 'Ú', 'C', 'ò', '5', 'k', 'j', 'g', 'S', 'ç', 'z', 'O', '0', 'ú', 'P', 'q', '7', 'w', 'f', 'ì', '8', 'm', 'B', 'è', 'L', 'í', 't', 'Ó', '9', 'e', 'p', ' ']
+        try:
+            informacao_criptografada = ''
+            tamanho_informacao = len(informacao)
+            
+            for i in range(tamanho_informacao):
+                index_caractere = Caracteres.index(informacao[i])
+                if index_caractere < 10:
+                    index_caractere = str(index_caractere)
+                    index_caractere = '0' + index_caractere
+                else:
+                    index_caractere = str(index_caractere)
+                informacao_criptografada += index_caractere
+            return informacao_criptografada
+
+        #---Para caso não seja possível fazer conversões---#
+        except ValueError:
+            print('        | Arquivo corrompido. Não foi possível fazer a conversão.')
+            print('        | ')
+            esperar = input('        | Aperte Enter para continuar..')
+            Gravar.Log('Método Criptografar - Arquivo Pastas Arquivos: ')
+            sys.exit() 
+
+        except Exception as erro:
+            print('        |')
+            print('        | Ocorreu um erro na execução do método. Verifique o Log')
+            esperar = input('        | Aperte Enter para continuar..')
+            Gravar.Log('Método Criptografar - Arquivo Pastas Arquivos: ' + str(erro))
+            sys.exit()
+
+    def Caracteres(caracteres):
+        try:
+            caractere_criptografado = ''
+            for i in range(len(caracteres)):
+                if (lista.index(caracteres[i])) < 10:
+                    caractere_criptografado += '0'
+                caractere_criptografado += str(lista.index(caracteres[i]))
+            return caractere_criptografado
+
+        #---Para caso não seja possível fazer conversões---#
+        except ValueError:
+            print('        | Arquivo corrompido. Não foi possível fazer a conversão.')
+            print('        | ')
+            esperar = input('        | Aperte Enter para continuar..')
+            Gravar.Log('Método Criptografar - Arquivo Caracteres: ')
+            sys.exit() 
+        
+        except Exception as erro:
+            print('        |')
+            print('        | Ocorreu um erro na execução do método. Verifique o Log')
+            esperar = input('        | Aperte Enter para continuar..')
+            Gravar.Log('Método Criptografar - Arquivo Caracteres: ' + str(erro))
+            sys.exit()
+
+
+class Descriptografar:
+    def Despesa(bloco):
+        try:
+            codigo_despesa = ''
+            descricao_despesa = ''
+            valor_despesa = ''
+            dia_despesa = ''
+            classificacao_despesa = ''
+            tipo_despesa = ''
+            forma_pagamento = ''
+
+            tamanho_codigo = lista[int((bloco[7] + bloco[8]))]
+            tamanho_descricao = lista[int(bloco[24] + bloco[25])] + lista[int(bloco[26] + bloco[27])]
+            tamanho_valor = lista[int((bloco[93] + bloco[94]))]
+
+            contador = 9
+            while contador <= (8 + (int(tamanho_codigo) * 2)):
+                codigo_despesa += lista[int((bloco[contador] + bloco[contador + 1]))]
+                contador += 2
+
+            contador = 28
+            while contador <= (27 + (int(tamanho_descricao) * 2)):
+                descricao_despesa += lista[int((bloco[contador] + bloco[contador + 1]))]
+                contador += 2
+            
+            contador = 95
+            while contador <= (94 + (int(tamanho_valor) * 2)):
+                valor_despesa += lista[int((bloco[contador] + bloco[contador + 1]))]
+                contador += 2
+            valor_despesa = valor_despesa[0:-2] + '.' + valor_despesa[-2:]
+
+            dia_despesa = lista[int(bloco[109] + bloco[110])] + lista[int(bloco[111] + bloco[112])]
+
+            classificacao_despesa = lista[int((bloco[118] + bloco[119]))]
+
+            tipo_despesa = lista[int(bloco[120] + bloco[121])] + lista[int(bloco[122] + bloco[123])]
+
+            forma_pagamento = lista[int(bloco[129] + bloco[130])] + lista[int(bloco[131] + bloco[132])]
+
+            lista_despesa = []
+            lista_despesa.append(codigo_despesa)
+            lista_despesa.append(descricao_despesa)
+            lista_despesa.append(valor_despesa)
+            lista_despesa.append(dia_despesa)
+            lista_despesa.append(classificacao_despesa)
+            lista_despesa.append(tipo_despesa)
+            lista_despesa.append(forma_pagamento)
+            return lista_despesa
+        
+        #---Para caso não seja possível fazer conversões---#
+        except ValueError:
+            print('        | Arquivo corrompido. Não foi possível fazer a conversão.')
+            print('        | ')
+            esperar = input('        | Aperte Enter para continuar..')
+            Gravar.Log('Método Descriptografar - Arquivo Despesa: ')
+            sys.exit() 
+
+        except Exception as erro:
+            print('        | Ocorreu um erro na execução do método. Verifique o Log')
+            esperar = input('        | Aperte Enter para continuar..')
+            Gravar.Log('Método Descriptografar - Arquivo Despesa: ' + str(erro))
+            sys.exit()
+
+
+    def Forma_Pagamento(bloco):
+        try:
+            codigo_forma_pagamento = ''
+            descricao_forma_pagamento = ''
+            pagamento_parcelado = ''
+            status_forma_pagamento = ''
+
+            tamanho_codigo = lista[int((bloco[7] + bloco[8]))]
+            tamanho_descricao = lista[int(bloco[18] + bloco[19])] + lista[int(bloco[20] + bloco[21])]
+
+            contador = 9
+
+            while contador <= (8 + (int(tamanho_codigo) * 2)):
+                codigo_forma_pagamento += lista[int((bloco[contador] + bloco[contador + 1]))]
+                contador += 2
+
+            contador = 22
+            while contador <= (21 + (int(tamanho_descricao) * 2)):
+                descricao_forma_pagamento += lista[int((bloco[contador] + bloco[contador + 1]))]
+                contador += 2
+
+            pagamento_parcelado = lista[int((bloco[66] + bloco[67]))]
+
+            status_forma_pagamento = lista[int((bloco[73] + bloco[74]))]
+
+            lista_forma_pagamento = []
+            lista_forma_pagamento.append(codigo_forma_pagamento)
+            lista_forma_pagamento.append(descricao_forma_pagamento)
+            lista_forma_pagamento.append(pagamento_parcelado)
+            lista_forma_pagamento.append(status_forma_pagamento)
+            return lista_forma_pagamento
+        
+        #---Para caso não seja possível fazer conversões---#
+        except ValueError:
+            print('        | Arquivo corrompido. Não foi possível fazer a conversão.')
+            print('        | ')
+            esperar = input('        | Aperte Enter para continuar..')
+            Gravar.Log('Método Descriptografar - Arquivo Forma Pagamento: ')
+            sys.exit() 
+        
+        except Exception as erro:
+            print('        | ')
+            print('        | Ocorreu um erro na execução do método. Verifique o Log')
+            esperar = input('        | Aperte Enter para continuar..')
+            Gravar.Log('Método Descriptografar - Arquivo Forma Pagamento: ' + str(erro))
+            sys.exit()
+
+    def Recebimento(bloco):
+        try:
+            codigo_recebimento = ''
+            valor_recebimento = ''
+            dia_recebimento = ''
+            
+            tamanho_codigo = lista[int((bloco[7] + bloco[8]))]
+            tamanho_valor = lista[int((bloco[22] + bloco[23]))]
+
+            contador = 9
+            while contador <= (8 + (int(tamanho_codigo) * 2)):
+                codigo_recebimento += lista[int((bloco[contador] + bloco[contador + 1]))]
+                contador += 2
+
+            contador = 24
+            while contador <= (23 + (int(tamanho_valor) * 2)):
+                valor_recebimento += lista[int((bloco[contador] + bloco[contador +1]))]
+                contador += 2
+            valor_recebimento = valor_recebimento[0:-2] + '.' + valor_recebimento[-2:]
+
+            dia_recebimento = lista[int(bloco[38] + bloco[39])] + lista[int(bloco[40] + bloco[41])]
+
+            lista_recebimento = []
+            lista_recebimento.append(codigo_recebimento)
+            lista_recebimento.append(valor_recebimento)
+            lista_recebimento.append(dia_recebimento)
+            return lista_recebimento
+
+        #---Para caso não seja possível fazer conversões---#
+        except ValueError:
+            print('        | Arquivo corrompido. Não foi possível fazer a conversão.')
+            print('        | ')
+            esperar = input('        | Aperte Enter para continuar..')
+            Gravar.Log('Método Descriptografar - Arquivo Recebimento: ')
+            sys.exit() 
+        
+        except Exception as erro:
+            print('\nOcorreu um erro na execução do método. Verifique o Log')
+            esperar = input('Aperte Enter para continuar..')
+            Gravar.Log('Método Descriptografar - Arquivo Recebimento: ' + str(erro))
+            sys.exit()
+
+
+    def Senha():
+        try:
+            files = Criptografar.Pastas_Arquivos('Files')
+            senha = Criptografar.Pastas_Arquivos('Senha')
+            with open(files + '\\' + senha + '\\' + senha + '.txt', 'r') as Arquivo_Senha:
+                senha = ''
+                contador = 0
+                posicao = 0
+                arquivo = Arquivo_Senha.readlines()
+                for bloco in arquivo:
+                    if contador > 0 and contador < 9:
+                        senha += (bloco[posicao] + bloco[posicao+1])
+                    posicao += 2
+                    contador += 1
+                senha = Descriptografar.Caracteres(senha)
+            return senha
+        except Exception as erro:
+            print('        | Ocorreu um erro na execução do método. Verifique o Log')
+            esperar = input('        | Aperte Enter para continuar..')
+            Gravar.Log('Método Descriptografar - Arquivo Senha: ')
+            sys.exit()
+
+    def Tipo_Despesa(bloco):
+        try:
+            codigo_tipo_despesa = ''
+            descricao_tipo_despesa = ''
+            status_tipo_despesa = ''
+            tamanho_codigo = lista[int((bloco[7] + bloco[8]))]
+            tamanho_descricao = lista[int(bloco[18] + bloco[19])] + lista[int(bloco[20] + bloco[21])]
+
+            contador = 9
+            while contador <= (8 + (int(tamanho_codigo) * 2)):
+                codigo_tipo_despesa += lista[int((bloco[contador] + bloco[contador+1]))]
+                contador += 2
+
+            contador = 22
+            while contador <= (21 + (int(tamanho_descricao) * 2)):
+                descricao_tipo_despesa += lista[int((bloco[contador] + bloco[contador+1]))]
+                contador += 2
+
+            status_tipo_despesa = lista[int((bloco[62] + bloco[63]))]
+
+            lista_tipo_despesa = []
+            lista_tipo_despesa.append(codigo_tipo_despesa)
+            lista_tipo_despesa.append(descricao_tipo_despesa)
+            lista_tipo_despesa.append(status_tipo_despesa)
+            return lista_tipo_despesa
+
+        #---Para caso não seja possível fazer conversões---#
+        except ValueError:
+            print('        | Arquivo corrompido. Não foi possível fazer a conversão.')
+            print('        | ')
+            esperar = input('        | Aperte Enter para continuar..')
+            Gravar.Log('Método Descriptografar - Arquivo Tipo Despesa: ')
+            sys.exit() 
+        
+        except Exception as erro:
+            print('        | ')
+            print('        | Ocorreu um erro na execução do método. Verifique o Log')
+            esperar = input('        | Aperte Enter para continuar..')
+            Gravar.Log('Método Descriptografar - Arquivo Tipo Despesa: ' + str(erro))
+            sys.exit()
+
+    def Pastas_Arquivos(informacao_criptografada):
+        Caracteres = ['Ù', 'N', 'á', 'U', 'W', '3', 'x', 'V', 'i', 'Ò', 'Í', '4', 'u', '6', 'I', 'G', 'Ì', 'H', '/', 'É', 'ã', 'ó', 'R', 'n', 'ô', 'Ñ', 'ù', 'E', 'À', 'Ç', 'd', '1', 'Q', 'ñ', 'à', 's', 'h', 'v', 'a', 'X', 'Y', 'é', 'o', 'F', 'l', 'r', '2', 'y', 'J', 'b', 'Ã', 'T', 'D', 'K', 'A', 'È', 'Ô', 'Á', 'c', 'Z', 'M', 'Ú', 'C', 'ò', '5', 'k', 'j', 'g', 'S', 'ç', 'z', 'O', '0', 'ú', 'P', 'q', '7', 'w', 'f', 'ì', '8', 'm', 'B', 'è', 'L', 'í', 't', 'Ó', '9', 'e', 'p', ' ']
+        try:
+            informacao_descriptografada = ''
+            contador = 0
+            while contador < (len(informacao_criptografada)):
+                informacao_descriptografada += Caracteres[int(informacao_criptografada[contador] + informacao_criptografada[contador+1])]
+                contador += 2
+            return informacao_descriptografada
+
+        #---Para caso não seja possível fazer conversões---#
+        except ValueError:
+            print('        | Arquivo corrompido. Não foi possível fazer a conversão.')
+            print('        | ')
+            esperar = input('        | Aperte Enter para continuar..')
+            Gravar.Log('Método Descriptografar - Arquivo Pastas Arquivos: ')
+            sys.exit()
+            
+        except Exception as erro:
+            print('        | ')
+            print('        | Ocorreu um erro na execução do método. Verifique o Log')
+            esperar = input('        | Aperte Enter para continuar..')
+            Gravar.Log('Método Descriptografar - Arquivo Pastas Arquivos: ' + str(erro))
+            sys.exit()
+
+
+    def Caracteres(caracteres):
+        try:
+            caractere_descriptografado = ''
+            contador = 0
+            while contador < (len(caracteres)):
+                caractere_descriptografado += lista[int(caracteres[contador] + caracteres[contador+1])]
+                contador += 2
+            return caractere_descriptografado
+
+        #---Para caso não seja possível fazer conversões---#
+        except ValueError:
+            print('        | Arquivo corrompido. Não foi possível fazer a conversão.')
+            print('        | ')
+            esperar = input('        | Aperte Enter para continuar..')
+            Gravar.Log('Método Descriptografar - Arquivo Caracteres: ')
+            sys.exit() 
+        
+        except Exception as erro:
+            print('        |')
+            print('        | Ocorreu um erro na execução do método. Verifique o Log')
+            esperar = input('        | Aperte Enter para continuar..')
+            Gravar.Log('Método Descriptografar - Arquivo Caracteres: ' + str(erro))
+            sys.exit()
+
+
+class Gravar:
+    def Despesa(bloco, mes, ano, lista_bloco):
+        try:
+            if len(mes) < 2:
+                mes = '0' + mes
+            files = Criptografar.Pastas_Arquivos('Files')
+            despesa = Criptografar.Pastas_Arquivos('Despesa')
+            mes = Criptografar.Pastas_Arquivos(mes)
+            ano = Criptografar.Pastas_Arquivos(ano)
+
+            #---Caso não exista a pasta do ano---#
+            if (os.path.isdir(files + '\\' + despesa + '\\' + ano) == False):
+                os.mkdir(files + '\\' + despesa + '\\' + ano)
+
+            #---Se a lista estiver vazia, será adicionado uma nova despesa---#
+            if (len(lista_bloco) == 0):
+                with open(files + '\\' + despesa + '\\' +  ano + '\\' + mes + '.txt', 'a') as Arquivo_Despesa:
+                    Arquivo_Despesa.write(bloco)
+                    Arquivo_Despesa.write('\n')
+            #---Caso contrário, haverá uma gravação sequencial de todos os registros (por conta de exclusão de um deles---#
+            else:
+                with open(files + '\\' + despesa + '\\' +  ano + '\\' + mes + '.txt', 'w') as Arquivo_Despesa:
+                    for i in range(len(lista_bloco)):
+                        Arquivo_Despesa.write(lista_bloco[i])
+                        Arquivo_Despesa.write('\n')
+                        
+        #---Para caso não seja possível fazer conversões---#
+        except ValueError:
+            print('        | Arquivo corrompido. Não foi possível fazer a conversão.')
+            print('        | ')
+            esperar = input('        | Aperte Enter para continuar..')
+            Log('Método Gravar - Arquivo Despesa: ')
+            sys.exit()       
+            
+        except Exception as erro:
+            print('        | ')
+            print('        | Ocorreu um erro na execução do método. Verifique o Log')
+            esperar = input('        | Aperte Enter para continuar..')
+            Log('Método Gravar - Arquivo Despesa: ' + str(erro))
+            sys.exit()
+
+
+    def Forma_Pagamento(bloco, lista_bloco):  
+        try:
+            files = Criptografar.Pastas_Arquivos('Files')
+            forma_pagamento = Criptografar.Pastas_Arquivos('Forma Pagamento')
+            arquivo_forma_pagamento = Criptografar.Pastas_Arquivos('Arquivo Forma Pagamento')
+
+            #---Se a lista estiver vazia, será adicionado uma nova forma de pagamento
+            if (len(lista_bloco) == 0):
+                with open(files + '\\' + forma_pagamento + '\\' + arquivo_forma_pagamento + '.txt', 'a') as Arquivo_Forma_Pagamento:
+                    Arquivo_Forma_Pagamento.write(bloco)
+                    Arquivo_Forma_Pagamento.write('\n')
+                    
+            #---Caso contrário, haverá uma gravação sequencial de todos os registros (por conta de alteração em um deles---#
+            else:
+                with open(files + '\\' + forma_pagamento + '\\' + arquivo_forma_pagamento + '.txt', 'w') as Arquivo_Forma_Pagamento:
+                    for i in range(len(lista_bloco)):
+                        Arquivo_Forma_Pagamento.write(lista_bloco[i])
+                        Arquivo_Forma_Pagamento.write('\n')
+
+        #---Para caso não seja possível fazer conversões---#
+        except ValueError:
+            print('        | Arquivo corrompido. Não foi possível fazer a conversão.')
+            print('        | ')
+            esperar = input('        | Aperte Enter para continuar..')
+            Log('Método Gravar - Arquivo Forma Pagamento: ')
+            sys.exit() 
+
+                         
+        except Exception as erro:
+            print('        | ')
+            print('        | Ocorreu um erro na execução do método. Verifique o Log')
+            esperar = input('        | Aperte Enter para continuar..')
+            Log('Método Gravar - Arquivo Forma Pagamento: ' + str(erro))
+            sys.exit()
+
+
+    def Log(erro):
+        data_atual = datetime.now()
+        arquivo_log = data_atual.strftime('%Y-%m-%d')
+        horario = data_atual.strftime('%H:%M:%S')
+
+        try:
+            files = Criptografar.Pastas_Arquivos('Files')
+            with open(files + '\\Logs' + '\\' + arquivo_log + '.txt', 'a') as Arquivo_Log:
+                Arquivo_Log.write(horario)
+                Arquivo_Log.write(' - ')
+                Arquivo_Log.write(erro)
+                Arquivo_Log.write('\n')
+        except:
+            print('        | ')
+            print('        | Não foi possível gravar o log')
+            print('        | ')
+            confirmar = input('        | Aperte ENTER para continuar.')
+            sys.exit
+
+
+    def Recebimento(bloco, mes, ano, lista_bloco):
+        try:
+            if len(mes) < 2:
+                mes = '0' + mes
+            files = Criptografar.Pastas_Arquivos('Files')
+            recebimento = Criptografar.Pastas_Arquivos('Recebimento')
+            mes = Criptografar.Pastas_Arquivos(mes)
+            ano = Criptografar.Pastas_Arquivos(ano)
+
+            #---Caso não exista a pasta do ano---#
+            if (os.path.isdir(files + '\\' + recebimento + '\\' + ano) == False):
+                os.mkdir(files + '\\' + recebimento + '\\' + ano)
+
+            #---Se a lista estiver vazia, será adicionado um novo recebimento---#
+            if (len(lista_bloco) == 0):
+                with open(files + '\\' + recebimento + '\\' +  ano + '\\' + mes + '.txt', 'a') as Arquivo_Recebimento:
+                    Arquivo_Recebimento.write(bloco)
+                    Arquivo_Recebimento.write('\n')
+            #---Caso contrário, haverá uma gravação sequencial de todos os registros (por conta de exclusão de um deles---#
+            else:
+                with open(files + '\\' + recebimento + '\\' +  ano + '\\' + mes + '.txt', 'w') as Arquivo_Recebimento:
+                    for i in range(len(lista_bloco)):
+                        Arquivo_Recebimento.write(lista_bloco[i])
+                        Arquivo_Recebimento.write('\n')
+
+        #---Para caso não seja possível fazer conversões---#
+        except ValueError:
+            print('        | Arquivo corrompido. Não foi possível fazer a conversão.')
+            print('        | ')
+            esperar = input('        | Aperte Enter para continuar..')
+            Log('Método Gravar - Arquivo Recebimento: ')
+            sys.exit() 
+            
+        except Exception as erro:
+            print('        | ')
+            print('        | Ocorreu um erro na execução do método. Verifique o Log')
+            esperar = input('        | Aperte Enter para continuar..')
+            Log('Método Gravar - Arquivo Recebimento: ' + str(erro))
+            sys.exit()
+
+
+    def Tipo_Despesa(bloco, lista_bloco):
+        try:
+            files = Criptografar.Pastas_Arquivos('Files')
+            tipo_despesa = Criptografar.Pastas_Arquivos('Tipo Despesa')
+            arquivo_tipo_despesa = Criptografar.Pastas_Arquivos('Arquivo Tipo Despesa')
+
+            #---Se a lista estiver vazia, será adicionado uma nova forma de pagamento
+            if (len(lista_bloco) == 0):
+                with open(files + '\\' + tipo_despesa + '\\' + arquivo_tipo_despesa + '.txt', 'a') as Arquivo_Tipo_Despesa:
+                    Arquivo_Tipo_Despesa.write(bloco)
+                    Arquivo_Tipo_Despesa.write('\n')
+                    
+            #---Caso contrário, haverá uma gravação sequencial de todos os registros (por conta de alteração em um deles---#
+            else:
+                with open(files + '\\' + tipo_despesa + '\\' + arquivo_tipo_despesa + '.txt', 'w') as Arquivo_Tipo_Despesa:
+                    for i in range(len(lista_bloco)):
+                        Arquivo_Tipo_Despesa.write(lista_bloco[i])
+                        Arquivo_Tipo_Despesa.write('\n')
+
+        #---Para caso não seja possível fazer conversões---#
+        except ValueError:
+            print('        | Arquivo corrompido. Não foi possível fazer a conversão.')
+            print('        | ')
+            esperar = input('        | Aperte Enter para continuar..')
+            Log('Método Gravar - Arquivo Tipo Despesa: ')
+            sys.exit() 
+            
+        except Exception as erro:
+            print('        | ')
+            print('        | Ocorreu um erro na execução do método. Verifique o Log')
+            esperar = input('        | Aperte Enter para continuar..')
+            Log('Método Gravar - Arquivo Tipo Despesa: ' + str(erro))
+            sys.exit()
+
+
+class Validar:
+    def Caractere_Permitido(texto):
+        for j in range(len(texto)):
+            for i in range(len(texto)):
+                if texto[i] not in lista:
+                    return texto[i]
+        return '0'
+
+
+    def Senha(senha):
+        if len(senha) != 8:
+            return '1' 
+
+        if (Validar.Caractere_Permitido(senha) == '0'):
+            return '0'
+        else:
+            return Validar.Caractere_Permitido(senha)
+
+
+    def Descricao_Forma_Pagamento(descricao):
+        if len(descricao) < 3 or len(descricao) > 22:
+            return '1'
+
+        if (Validar.Caractere_Permitido(descricao) == '0'):
+            return '0'
+
+        else:
+            return Validar.Caractere_Permitido(descricao)
+
+
+    def Descricao_Tipo_Despesa(descricao):
+        if len(descricao) < 3 or len(descricao) > 20:
+            return '1'
+
+        if (Validar.Caractere_Permitido(descricao) == '0'):
+            return '0'
+
+        else:
+            return Validar.Caractere_Permitido(descricao)
+
+
+    def Descricao_Despesa(descricao):
+        if len(descricao) < 3 or len(descricao) > 25:
+            return '1'
+
+        if (Validar.Caractere_Permitido(descricao) == '0'):
+            return '0'
+
+        else:
+            return Validar.Caractere_Permitido(descricao)
+
+    def Valor(valor):
+        try:
+            valor2 = ''
+            for i in range(len(valor)):
+                if valor[i] == ',':
+                    valor2 += '.'
+                else:
+                    valor2 += valor[i]
+            valor2 = float(valor2)
+
+            if valor2 > 99999.99 or valor2 <= 0:
+                return False, valor2
+            else:
+                valor2 = "%.2f" % valor2
+                return True, str(valor2)
+            
+        except Exception as erro:
+            return False, valor2
+
+    def Dia(dia):
+        try:
+            dia = int(dia)
+            if (dia // 1) == dia:
+                if dia >= 1 and dia <= 31:
+                    return True
+                else:
+                    return False
+            else:
+                    return False
+        except:
+            return False
+
+
+    def Mes(mes):
+        try:
+            mes = int(mes)
+            if (mes // 1) == mes:
+                if mes >= 1 and mes <= 12:
+                    return True
+                else:
+                    return False
+                
+            else:
+                return False
+        except:
+            return False
+
+    def Ano(ano):
+        try:
+            ano = int(ano)
+            if (ano // 1) == ano:
+                if ano >= 1000 and ano <= 9999:
+                    return True
+                else:
+                    return False
+                
+            else:
+                return False
+        except:
+            return False
+
+    def Codigo(codigo):
+        try:
+            codigo = int(codigo)
+            codigo = str(codigo)
+            return codigo
+        except:
+            return codigo
+
+    def Parcelas(quantidade_parcelas, codigos_para_uso):
+        try:
+            quantidade_parcelas = int(quantidade_parcelas)
+            if (quantidade_parcelas // 1) == quantidade_parcelas:
+                if quantidade_parcelas >= 1 and quantidade_parcelas <= 99:
+                    if int(codigos_para_uso) >= quantidade_parcelas:
+                        return True, True
+                    else:
+                        return True, False
+                else:
+                    return False, False
+            else:
+                return False, False
+        except:
+            return False, False
+
+def Autenticar():
+    print                  ('    _______________________')
+    print                  ('    |                     |')
+    print                  ('    |  Esqueceu a senha?  |')
+    print                  ('    |    Aperte ENTER     |')
+    print                  ('    |_____________________|')
+    print                  ('                          |')
+    print                  ('                          |___________________________')
+    print                  ('                          |                          |')
+    print                  ('                          |       Autenticação       |')
+    print                  ('                          |--------------------------|')
+    print                  ('                          |')
+    senha = getpass.getpass('                          | Informe a senha: ')
+
+    if senha == '':
+        Esperar()
+        print('                          |')
+        print('                          | Coloque o seu arquivo Chave.txt na mesma pasta deste programa')
+        print('                          |')
+        Esperar()
+        confirmar = input('                          | Confirme apertando ENTER se já fez.')
+        try:
+            with open('Chave.txt', 'r') as Chave:
+                bloco = Chave.readline()
+
+            if '\n' in bloco:
+                bloco = bloco[:-1]
+                
+            caracteres_chave = []
+            for i in bloco:
+                caracteres_chave.append(i)
+
+            if caracteres_chave == lista:
+                Criptografar.Senha('12345678')
+                print('                          |')
+                print('                          | Sua senha foi redefinida para 12345678. É recomendado que altere-a.')
+                print('                          |')
+                Esperar()
+                confirmar = input('                          | Aperte ENTER para continuar.')
+                return True
+
+            else:
+                print('                          |')
+                print('                          | Chave incorreta. Verifique e tente novamente.')
+                Esperar()
+                Esperar()
+                Esperar()
+                sys.exit()
+                    
+        except:
+            print('                          |')
+            print('                          | Não foi possível ler o arquivo.')
+            Esperar()
+            Esperar()
+            Esperar()
+            sys.exit()
+
+    else:
+        #--Breve "Animação"---#
+        pontos = '                          |'
+        for i in range(26):
+            os.system('cls')
+            pontos += '-'
+            print('\n\n\n\n\n\n                          ____________________________')
+            print('                          |                          |')
+            print('                          |       Autenticação       |')
+            print('                          |--------------------------|')
+            print('                          |                          |')
+            print('                          | Informe a senha:         |')
+            if i == 25:
+                pontos = pontos + '|'
+            print(pontos)
+            for contagem in range(0,1):
+                sleep(0.04)                
+        print('                          |')
+                
+        #---Autenticação---#
+        if len(senha) != 8:
+            print('                          |')
+            print('                          | Senha incorreta')
+            Esperar()
+            sys.exit
+
+        else:
+            senha_correta = Descriptografar.Senha()
+
+            if senha == senha_correta:
+                return True
+
+            else:
+                print('                          |')
+                print('                          | Senha incorreta')
+                Esperar()
+                sys.exit
