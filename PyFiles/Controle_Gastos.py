@@ -16,7 +16,7 @@ from Classes import Validar
 
 def Operacao_Cancelada(opcao):
     print('        |')
-    print('        | Operação Cancelada')
+    print('        | Operacao Cancelada')
     Classes.Esperar()
     return Laco_Funcoes(opcao)
 
@@ -26,7 +26,7 @@ def Menu():
     os.system('cls')
     print('        _____________________________________________________________________________')
     print('        |---------------------------------------------------------------------------|')
-    print('        |                             GESTÃO DE GASTOS                              |')
+    print('        |                             GESTAO DE GASTOS                              |')
     print('        |___________________________________________________________________________|')
     print('        |---------|                                                       |---------|')
     print('        |---------|                                                       |---------|')
@@ -40,7 +40,7 @@ def Menu():
     print('        |---------|                                                       |---------|')
     print('        |_________|_______________________________________________________|_________|')
     print('        |')
-    opcao = input('        | Informe a opção desejada: ')
+    opcao = input('        | Informe a opcao desejada: ')
 
     if opcao == '0' or opcao == '':
         return Classes.Fim_Programa()
@@ -53,12 +53,12 @@ def Menu():
         return SubMenu(opcao)
 
     else:
-        print('        |\n        | Opção inválida!')
+        print('        |\n        | Opcao invalida!')
         Classes.Esperar()
         return Menu()
 
 
-#---Subopções do Menu---#
+#---Subopcões do Menu---#
 def SubMenu(opcao):
     escolha = opcao
 
@@ -80,7 +80,7 @@ def SubMenu(opcao):
         print('        |---------|                                                       |---------|')
         print('        |_________|_______________________________________________________|_________|')
         print('        |')
-        escolha = input('        | Informe a opção desejada: ')
+        escolha = input('        | Informe a opcao desejada: ')
         if escolha == '0' or escolha == '':
             return Menu()
 
@@ -88,7 +88,7 @@ def SubMenu(opcao):
             return SubOpcoes(opcao + escolha)
 
         else:
-            print('        |\n        | Opção inválida!')
+            print('        |\n        | Opcao invalida!')
             Classes.Esperar()
             return SubOpcoes(opcao)
 
@@ -104,15 +104,15 @@ def SubMenu(opcao):
         print('        |---------|                                                       |---------|')
         print('        |---------|      1 - Mudar Senha                                  |---------|')
         print('        |---------|                                                       |---------|')
-        print('        |---------|      2 - Manutenção de Cadastro de Forma de Pagamento |---------|')
+        print('        |---------|      2 - Manutencao de Cadastro de Forma de Pagamento |---------|')
         print('        |---------|                                                       |---------|')
-        print('        |---------|      3 - Manutenção de Cadastro de Tipos de Despesa   |---------|')
+        print('        |---------|      3 - Manutencao de Cadastro de Tipos de Despesa   |---------|')
         print('        |---------|                                                       |---------|')
         print('        |---------|      4 - Resetar Programa                             |---------|')
         print('        |---------|                                                       |---------|')
         print('        |_________|_______________________________________________________|_________|')
         print('        |')
-        escolha = input('        | Informe a opção desejada: ')
+        escolha = input('        | Informe a opcao desejada: ')
 
         if escolha == '0' or escolha == '':
             return Menu()
@@ -126,7 +126,7 @@ def SubMenu(opcao):
             return SubOpcoes(opcao + escolha)
 
         else:
-            print('        |\n        | Opção inválida!')
+            print('        |\n        | Opcao invalida!')
             Classes.Esperar()
             return SubMenu(opcao)
 
@@ -152,7 +152,7 @@ def SubOpcoes(opcao):
         print('        |---------|                                                       |---------|')
         print('        |_________|_______________________________________________________|_________|')
         print('        |')
-        escolha = input('        | Informe a opção desejada: ')
+        escolha = input('        | Informe a opcao desejada: ')
         if escolha == '0' or escolha == '':
             return SubMenu('1')
 
@@ -162,7 +162,7 @@ def SubOpcoes(opcao):
             return Laco_Funcoes(opcao + escolha)
 
         else:
-            print('        |\n        | Opção inválida!')
+            print('        |\n        | Opcao invalida!')
             Classes.Esperar()
             return SubOpcoes(opcao)
 
@@ -182,7 +182,7 @@ def SubOpcoes(opcao):
         print('        |---------|                                                       |---------|')
         print('        |_________|_______________________________________________________|_________|')
         print('        |')
-        escolha = input('        | Informe a opção desejada: ')
+        escolha = input('        | Informe a opcao desejada: ')
 
         if escolha == '0' or escolha == '':
             return SubMenu('1')
@@ -193,7 +193,7 @@ def SubOpcoes(opcao):
             return Laco_Funcoes(opcao + escolha)
 
         else:
-            print('        |\n        | Opção inválida!')
+            print('        |\n        | Opcao invalida!')
             Classes.Esperar()
             return SubOpcoes(opcao)
  
@@ -214,7 +214,7 @@ def SubOpcoes(opcao):
         print('        |---------|                                                       |---------|')
         print('        |_________|_______________________________________________________|_________|')
         print('        |')
-        escolha = input('        | Informe a opção desejada: ')
+        escolha = input('        | Informe a opcao desejada: ')
 
         if escolha == '0' or escolha == '':
             return SubMenu('1')
@@ -225,7 +225,7 @@ def SubOpcoes(opcao):
             return Laco_Funcoes(opcao + escolha)
 
         else:
-            print('        |\n        | Opção inválida!')
+            print('        |\n        | Opcao invalida!')
             Classes.Esperar()
             return SubOpcoes(opcao)
 
@@ -246,7 +246,7 @@ def SubOpcoes(opcao):
         print('        |---------|                                                       |---------|')
         print('        |_________|_______________________________________________________|_________|')
         print('        |')
-        escolha = input('        | Informe a opção desejada: ')
+        escolha = input('        | Informe a opcao desejada: ')
 
         if escolha == '0' or escolha == '':
             return SubMenu('2')
@@ -257,7 +257,7 @@ def SubOpcoes(opcao):
             return Laco_Funcoes(opcao + escolha)
 
         else:
-            print('        |\n        | Opção inválida!')
+            print('        |\n        | Opcao invalida!')
             Classes.Esperar()
             return SubOpcoes(opcao)
 
@@ -277,7 +277,7 @@ def SubOpcoes(opcao):
         print('        |---------|                                                       |---------|')
         print('        |_________|_______________________________________________________|_________|')
         print('        |')
-        escolha = input('        | Informe a opção desejada: ')
+        escolha = input('        | Informe a opcao desejada: ')
 
         if escolha == '0' or escolha == '':
             return SubMenu('2')
@@ -288,12 +288,12 @@ def SubOpcoes(opcao):
             return Laco_Funcoes(opcao + escolha)
 
         else:
-            print('        |\n        | Opção inválida!')
+            print('        |\n        | Opcao invalida!')
             Classes.Esperar()
             return SubOpcoes(opcao)
  
 
-#---Laço que contém as funcionalidades---#
+#---Laco que contem as funcionalidades---#
 def Laco_Funcoes(opcao):
 
     escolha = opcao
@@ -318,7 +318,7 @@ def Laco_Funcoes(opcao):
 
                 if int(codigo)> 99999:
                     print('        |')
-                    print('        | Não há mais espaço para criação de despesas.')
+                    print('        | Nao ha mais espaco para criacao de despesas.')
                     Classes.Esperar()
                     Classes.Esperar()
                     return SubOpcoes('11')
@@ -331,11 +331,11 @@ def Laco_Funcoes(opcao):
             if (retorno != '0'):
                 while (retorno != '0'):
                     if retorno == '1':
-                        descricao = input('        | Incorreto. A descrição deve conter entre 3 e 25 caracteres. Informe novamente: ')
+                        descricao = input('        | Incorreto. A descricao deve conter entre 3 e 25 caracteres. Informe novamente: ')
                         if descricao == '':
                             return Operacao_Cancelada(opcao)
                     else:
-                        descricao = input('        | Incorreto. Caractere "' + retorno + '" não aceito. Informe novamente: ')
+                        descricao = input('        | Incorreto. Caractere "' + retorno + '" nao aceito. Informe novamente: ')
                         if descricao == '':
                             return Operacao_Cancelada(opcao)
                     retorno = Validar.Descricao_Despesa(descricao)
@@ -367,15 +367,15 @@ def Laco_Funcoes(opcao):
                         return Operacao_Cancelada(opcao)
                     retorno = Validar.Dia(dia)
 
-            #---Informando o Mês---#
+            #---Informando o Mes---#
             print('        |')
-            mes = input('        | Informe o mês: ')
+            mes = input('        | Informe o mes: ')
             if mes == '':
                 return Operacao_Cancelada(opcao)
             retorno = Validar.Mes(mes)
             if (retorno == False):
                 while (retorno == False):
-                    mes = input('        | Mês incorreto. Informe novamente: ')
+                    mes = input('        | Mes incorreto. Informe novamente: ')
                     if mes == '':
                         return Operacao_Cancelada(opcao)
                     retorno = Validar.Mes(mes)
@@ -393,10 +393,10 @@ def Laco_Funcoes(opcao):
                         return Operacao_Cancelada(opcao)
                     retorno = Validar.Ano(ano)
 
-            #---Informando a Classificação---#
+            #---Informando a Classificacao---#
             print('        |')
-            print('        | Qual a classificação desta despesa?')
-            classificacao = input('        | 0 - Fixo / 1 - Variável: ')
+            print('        | Qual a classificacao desta despesa?')
+            classificacao = input('        | 0 - Fixo / 1 - Variavel: ')
             if classificacao == '':
                 return Operacao_Cancelada(opcao)
             if classificacao != '0' and classificacao != '1':
@@ -407,17 +407,17 @@ def Laco_Funcoes(opcao):
 
             #---Informando o Tipo de Despesa---#            
             print('        |')
-                                                            #Exclusão, consulta para despesa
+                                                            #Exclusao, consulta para despesa
             lista_codigo_tipo_despesa = Consultar.Tipo_Despesa(False, False)
             print('        |')
-            tipo_despesa = input('        | Informe o código do tipo de despesa: ')
+            tipo_despesa = input('        | Informe o codigo do tipo de despesa: ')
             if tipo_despesa == '':
                 return Operacao_Cancelada(opcao)
             if len(tipo_despesa) < 2:
                 tipo_despesa = '0' + tipo_despesa
             if (tipo_despesa not in lista_codigo_tipo_despesa):
                 while (tipo_despesa not in lista_codigo_tipo_despesa):
-                    tipo_despesa = input('        | Código não existente. Informe novamente: ')
+                    tipo_despesa = input('        | Codigo nao existente. Informe novamente: ')
                     if tipo_despesa == '':
                         return Operacao_Cancelada(opcao)
                     else:
@@ -426,18 +426,18 @@ def Laco_Funcoes(opcao):
 
             #---Informando a forma de pagamento---#
             print('        |')
-                                                                    #Exclusão, Pagamento Parcelado, Consulta para Despesa
+                                                                    #Exclusao, Pagamento Parcelado, Consulta para Despesa
             lista_codigo_forma_pagamento = Consultar.Forma_Pagamento(False, False, False)
 
             print('        |')
-            forma_pagamento = input('        | Informe o código da forma de pagamento: ')
+            forma_pagamento = input('        | Informe o codigo da forma de pagamento: ')
             if forma_pagamento == '':
                 return Operacao_Cancelada(opcao)
             if len(forma_pagamento) < 2:
                 forma_pagamento = '0' + forma_pagamento
             if (forma_pagamento not in lista_codigo_forma_pagamento):
                 while (forma_pagamento not in lista_codigo_forma_pagamento):
-                    forma_pagamento = input('        | Código não existente. Informe novamente: ')
+                    forma_pagamento = input('        | Codigo nao existente. Informe novamente: ')
                     if forma_pagamento == '':
                         return Operacao_Cancelada(opcao)
                     else:
@@ -456,11 +456,11 @@ def Laco_Funcoes(opcao):
 
             print('        |')
             Classes.Esperar()
-            print('        | Despesa incluída com sucesso!')
+            print('        | Despesa incluida com sucesso!')
             Classes.Esperar()
             enter = input ('        | Aperte ENTER para continuar.')
             
-            #---Aumentando em 1 o código da Despesa---#
+            #---Aumentando em 1 o codigo da Despesa---#
             try:
                 codigo = int(codigo)
                 codigo += 1
@@ -475,22 +475,22 @@ def Laco_Funcoes(opcao):
                     return Laco_Funcoes(opcao)
 
             except Exception as erro:
-                print('        | Ocorreu um erro na execução do método: Verifique o Log')
+                print('        | Ocorreu um erro na execucao do metodo: Verifique o Log')
                 Classes.Esperar = input('        | Aperte Enter para continuar..')
-                Gravar.Log('Método Incluir Despesa (atualizando registro de código) - Arquivo Controle Gastos (risco de sobrescrita de registros): ' + str(erro))
+                Gravar.Log('Metodo Incluir Despesa (atualizando registro de codigo) - Arquivo Controle Gastos (risco de sobrescrita de registros): ' + str(erro))
                 sys.exit()
 
-        #---Para caso o arquivo de código tenha sido adulterado e contenha caracteres diferentes de números---#
+        #---Para caso o arquivo de codigo tenha sido adulterado e contenha caracteres diferentes de números---#
         except ValueError:
-            print('        | Arquivo corrompido. Verifique os arquivos que contém os códigos de despesa e restaure-os.') #---Não gera Log, pois a exceção iria jogar o caractere correspondente aos contidos no arquivo, gerando vulnerabilidade
+            print('        | Arquivo corrompido. Verifique os arquivos que contem os codigos de despesa e restaure-os.') #---Nao gera Log, pois a excecao iria jogar o caractere correspondente aos contidos no arquivo, gerando vulnerabilidade
             Classes.Esperar()
             Classes.Esperar()
             return SubMenu('1')
             
         except Exception as erro:
-            print('        | Ocorreu um erro na execução do método: Verifique o Log')
+            print('        | Ocorreu um erro na execucao do metodo: Verifique o Log')
             Classes.Esperar = input('        | Aperte Enter para continuar..')
-            Gravar.Log('Método Incluir Despesa - Arquivo Controle Gastos: ' + str(erro))
+            Gravar.Log('Metodo Incluir Despesa - Arquivo Controle Gastos: ' + str(erro))
             sys.exit()
 
     if opcao == '112':
@@ -513,7 +513,7 @@ def Laco_Funcoes(opcao):
 
                 if int(codigo)> 99999:
                     print('        |')
-                    print('        | Não há mais espaço para criação de despesas.')
+                    print('        | Nao ha mais espaco para criacao de despesas.')
                     Classes.Esperar()
                     Classes.Esperar()
                     return SubOpcoes('11')
@@ -528,11 +528,11 @@ def Laco_Funcoes(opcao):
             if (retorno != '0'):
                 while (retorno != '0'):
                     if retorno == '1':
-                        descricao = input('        | Incorreto. A descrição deve conter entre 3 e 25 caracteres. Informe novamente: ')
+                        descricao = input('        | Incorreto. A descricao deve conter entre 3 e 25 caracteres. Informe novamente: ')
                         if descricao == '':
                             return Operacao_Cancelada(opcao)
                     else:
-                        descricao = input('        | Incorreto. Caractere "' + retorno + '" não aceito. Informe novamente: ')
+                        descricao = input('        | Incorreto. Caractere "' + retorno + '" nao aceito. Informe novamente: ')
                         if descricao == '':
                             return Operacao_Cancelada(opcao)
                     retorno = Validar.Descricao_Despesa(descricao)
@@ -560,9 +560,9 @@ def Laco_Funcoes(opcao):
             if (retorno == False) or (codigos_suficientes == False):
                 while (retorno == False) or (codigos_suficientes == False):
                     if (retorno == False):
-                        quantidade_parcelas = input('        | Incorreto. Parcelas só podem ser inteiras e de 1 a 99: Informe novamente: ')
+                        quantidade_parcelas = input('        | Incorreto. Parcelas so podem ser inteiras e de 1 a 99: Informe novamente: ')
                     else:
-                        quantidade_parcelas = input('        | Há espaço para apenas ' + str(codigos_para_uso) + ' novas despesas. Informe novamente: ')
+                        quantidade_parcelas = input('        | Ha espaco para apenas ' + str(codigos_para_uso) + ' novas despesas. Informe novamente: ')
 
                     if quantidade_parcelas == '':
                         return Operacao_Cancelada(opcao)
@@ -581,15 +581,15 @@ def Laco_Funcoes(opcao):
                         return Operacao_Cancelada(opcao)
                     retorno = Validar.Dia(dia)
 
-            #---Informando o Mês---#
+            #---Informando o Mes---#
             print('        |')
-            mes = input('        | Informe o mês da primeira parcela: ')
+            mes = input('        | Informe o mes da primeira parcela: ')
             if mes == '':
                 return Operacao_Cancelada(opcao)
             retorno = Validar.Mes(mes)
             if (retorno == False):
                 while (retorno == False):
-                    mes = input('        | Mês incorreto. Informe novamente: ')
+                    mes = input('        | Mes incorreto. Informe novamente: ')
                     if mes == '':
                         return Operacao_Cancelada(opcao)
                     retorno = Validar.Mes(mes)
@@ -606,17 +606,17 @@ def Laco_Funcoes(opcao):
                     if ano == '':
                         return Operacao_Cancelada(opcao)
                     retorno = Validar.Ano(ano)
-            #---Caso o usuário informe um ano que a quantidade de parcelas ultrapasse o ano limite---#
+            #---Caso o usuario informe um ano que a quantidade de parcelas ultrapasse o ano limite---#
             if (int(ano) + (int(quantidade_parcelas)/12)) > 9999:
                 print('        | A quantidade de parcelas ultrapassa o ano limite estabelecido pelo sistema (9999).')
                 Classes.Esperar()
                 Classes.Esperar()
                 return Laco_Funcoes(opcao)
 
-            #---Informando a Classificação---#
+            #---Informando a Classificacao---#
             print('        |')
-            print('        | Qual a classificação desta despesa?')
-            classificacao = input('        | 0 - Fixo / 1 - Variável: ')
+            print('        | Qual a classificacao desta despesa?')
+            classificacao = input('        | 0 - Fixo / 1 - Variavel: ')
             if classificacao == '':
                 return Operacao_Cancelada(opcao)
             if classificacao != '0' and classificacao != '1':
@@ -627,17 +627,17 @@ def Laco_Funcoes(opcao):
 
             #---Informando o Tipo de Despesa---#            
             print('        |')
-                                                            #Exclusão, consulta para despesa
+                                                            #Exclusao, consulta para despesa
             lista_codigo_tipo_despesa = Consultar.Tipo_Despesa(False, False)
             print('        |')
-            tipo_despesa = input('        | Informe o código do tipo de despesa: ')
+            tipo_despesa = input('        | Informe o codigo do tipo de despesa: ')
             if tipo_despesa == '':
                 return Operacao_Cancelada(opcao)
             if len(tipo_despesa) < 2:
                 tipo_despesa = '0' + tipo_despesa
             if (tipo_despesa not in lista_codigo_tipo_despesa):
                 while (tipo_despesa not in lista_codigo_tipo_despesa):
-                    tipo_despesa = input('        | Código não existente. Informe novamente: ')
+                    tipo_despesa = input('        | Codigo nao existente. Informe novamente: ')
                     if tipo_despesa == '':
                         return Operacao_Cancelada(opcao)
                     else:
@@ -646,18 +646,18 @@ def Laco_Funcoes(opcao):
 
             #---Informando a forma de pagamento---#
             print('        |')
-                                                                    #Exclusão, Pagamento Parcelado, Consulta para Despesa
+                                                                    #Exclusao, Pagamento Parcelado, Consulta para Despesa
             lista_codigo_forma_pagamento = Consultar.Forma_Pagamento(False, True, False)
 
             print('        |')
-            forma_pagamento = input('        | Informe o código da forma de pagamento: ')
+            forma_pagamento = input('        | Informe o codigo da forma de pagamento: ')
             if forma_pagamento == '':
                 return Operacao_Cancelada(opcao)
             if len(forma_pagamento) < 2:
                 forma_pagamento = '0' + forma_pagamento
             if (forma_pagamento not in lista_codigo_forma_pagamento):
                 while (forma_pagamento not in lista_codigo_forma_pagamento):
-                    forma_pagamento = input('        | Código não existente. Informe novamente: ')
+                    forma_pagamento = input('        | Codigo nao existente. Informe novamente: ')
                     if forma_pagamento == '':
                         return Operacao_Cancelada(opcao)
                     else:
@@ -670,7 +670,7 @@ def Laco_Funcoes(opcao):
             if confirmar != 'S':
                 return Operacao_Cancelada(opcao)
 
-            #---Laço de repetição que incluirá as despesas em cada mês---#
+            #---Laco de repeticao que incluira as despesas em cada mes---#
             parcela_inicial = 1
             while parcela_inicial <= int(quantidade_parcelas):
                 #---Atualizando a parcela---#
@@ -678,7 +678,7 @@ def Laco_Funcoes(opcao):
                 lista_vazia = []
                 Gravar.Despesa(bloco, mes, ano, lista_vazia)
 
-                #---Atualizando o mês---#
+                #---Atualizando o mes---#
                 if mes == '12':
                     mes = '1'
                     ano = str(int(ano) + 1)
@@ -689,11 +689,11 @@ def Laco_Funcoes(opcao):
                 
             print('        |')
             Classes.Esperar()
-            print('        | Despesa incluída com sucesso!')
+            print('        | Despesa incluida com sucesso!')
             Classes.Esperar()
             enter = input ('        | Aperte ENTER para continuar.')
             
-            #---Atualizando o código da Despesa---#
+            #---Atualizando o codigo da Despesa---#
             try:
                 codigo = int(codigo)
                 codigo = codigo + int(quantidade_parcelas)
@@ -709,22 +709,22 @@ def Laco_Funcoes(opcao):
                     return Laco_Funcoes(opcao)
 
             except Exception as erro:
-                print('        | Ocorreu um erro na execução do método: Verifique o Log')
+                print('        | Ocorreu um erro na execucao do metodo: Verifique o Log')
                 Classes.Esperar = input('        | Aperte Enter para continuar..')
-                Gravar.Log('Método Incluir Despesa Parcelada(atualizando registro de código) - Arquivo Controle Gastos (risco de sobrescrita de registros): ' + str(erro))
+                Gravar.Log('Metodo Incluir Despesa Parcelada(atualizando registro de codigo) - Arquivo Controle Gastos (risco de sobrescrita de registros): ' + str(erro))
                 sys.exit()
 
-        #---Para caso o arquivo de código tenha sido adulterado e contenha caracteres diferentes de números---#
+        #---Para caso o arquivo de codigo tenha sido adulterado e contenha caracteres diferentes de números---#
         except ValueError:
-            print('        | Arquivo corrompido. Verifique os arquivos que contém os códigos de despesa e restaure-os.') #---Não gera Log, pois a exceção iria jogar o caractere correspondente aos contidos no arquivo, gerando vulnerabilidade
+            print('        | Arquivo corrompido. Verifique os arquivos que contem os codigos de despesa e restaure-os.') #---Nao gera Log, pois a excecao iria jogar o caractere correspondente aos contidos no arquivo, gerando vulnerabilidade
             Classes.Esperar()
             Classes.Esperar()
             return SubMenu('1')
             
         except Exception as erro:
-            print('        | Ocorreu um erro na execução do método: Verifique o Log')
+            print('        | Ocorreu um erro na execucao do metodo: Verifique o Log')
             Classes.Esperar = input('        | Aperte Enter para continuar..')
-            Gravar.Log('Método Incluir Despesa Parcelada - Arquivo Controle Gastos: ' + str(erro))
+            Gravar.Log('Metodo Incluir Despesa Parcelada - Arquivo Controle Gastos: ' + str(erro))
             sys.exit()
 
     if opcao == '113':
@@ -747,7 +747,7 @@ def Laco_Funcoes(opcao):
 
                 if int(codigo) > 99999:
                     print('        |')
-                    print('        | Não há mais espaço para criação de recebimentos.')
+                    print('        | Nao ha mais espaco para criacao de recebimentos.')
                     Classes.Esperar()
                     Classes.Esperar()
                     return SubOpcoes('11')
@@ -778,15 +778,15 @@ def Laco_Funcoes(opcao):
                         return Operacao_Cancelada(opcao)
                     retorno = Validar.Dia(dia)
 
-            #---Informando o Mês---#
+            #---Informando o Mes---#
             print('        |')
-            mes = input('        | Informe o mês: ')
+            mes = input('        | Informe o mes: ')
             if mes == '':
                 return Operacao_Cancelada(opcao)
             retorno = Validar.Mes(mes)
             if (retorno == False):
                 while (retorno == False):
-                    mes = input('        | Mês incorreto. Informe novamente: ')
+                    mes = input('        | Mes incorreto. Informe novamente: ')
                     if mes == '':
                         return Operacao_Cancelada(opcao)
                     retorno = Validar.Mes(mes)
@@ -816,11 +816,11 @@ def Laco_Funcoes(opcao):
 
             print('        |')
             Classes.Esperar()
-            print('        | Recebimento incluído com sucesso!')
+            print('        | Recebimento incluido com sucesso!')
             Classes.Esperar()
             enter = input('        | Aperte ENTER para continuar.')
 
-            #---Aumentando em 1 o código da Despesa---#
+            #---Aumentando em 1 o codigo da Despesa---#
             try:
                 codigo = int(codigo)
                 codigo = codigo + 1
@@ -836,22 +836,22 @@ def Laco_Funcoes(opcao):
                     return Laco_Funcoes(opcao)
 
             except Exception as erro:
-                print('        | Ocorreu um erro na execução do método: Verifique o Log')
+                print('        | Ocorreu um erro na execucao do metodo: Verifique o Log')
                 Classes.Esperar = input('        | Aperte Enter para continuar..')
-                Gravar.Log('Método Incluir Recebimento (atualizando registro de código) - Arquivo Controle Gastos (risco de sobrescrita de registros): ' + str(erro))
+                Gravar.Log('Metodo Incluir Recebimento (atualizando registro de codigo) - Arquivo Controle Gastos (risco de sobrescrita de registros): ' + str(erro))
                 sys.exit()
                 
-        #---Para caso o arquivo de código tenha sido adulterado e contenha caracteres diferentes de números---#
+        #---Para caso o arquivo de codigo tenha sido adulterado e contenha caracteres diferentes de números---#
         except ValueError:
-            print('        | Arquivo corrompido. Verifique os arquivos que contém os códigos de recebimento e restaure-os.') #---Não gera Log, pois a exceção iria jogar o caractere correspondente aos contidos no arquivo, gerando vulnerabilidade
+            print('        | Arquivo corrompido. Verifique os arquivos que contem os codigos de recebimento e restaure-os.') #---Nao gera Log, pois a excecao iria jogar o caractere correspondente aos contidos no arquivo, gerando vulnerabilidade
             Classes.Esperar()
             Classes.Esperar()
             return SubMenu('1')
             
         except Exception as erro:
-            print('        | Ocorreu um erro na execução do método: Verifique o Log')
+            print('        | Ocorreu um erro na execucao do metodo: Verifique o Log')
             Classes.Esperar = input('        | Aperte Enter para continuar..')
-            Gravar.Log('Método Incluir Recebimento - Arquivo Controle Gastos: ' + str(erro))
+            Gravar.Log('Metodo Incluir Recebimento - Arquivo Controle Gastos: ' + str(erro))
             sys.exit()
 
     if escolha == '121':
@@ -864,14 +864,14 @@ def Laco_Funcoes(opcao):
         print('        |_______________________|')
         print('        |')
 
-        #---Informando o Mês---#
-        mes = input('        | Informe o mês: ')
+        #---Informando o Mes---#
+        mes = input('        | Informe o mes: ')
         if mes == '':
             return SubOpcoes('12')
         retorno = Validar.Mes(mes)
         if (retorno == False):
             while (retorno == False):
-                mes = input('        | Mês incorreto. Informe novamente: ')
+                mes = input('        | Mes incorreto. Informe novamente: ')
                 if mes == '':
                     return Operacao_Cancelada(opcao)
                 retorno = Validar.Mes(mes)
@@ -890,7 +890,7 @@ def Laco_Funcoes(opcao):
                 retorno = Validar.Ano(ano)
 
 
-        #---Testando se o arquivo deste mês existe---#
+        #---Testando se o arquivo deste mes existe---#
         if len(mes) < 2:
             mes = '0' + mes
         files               =   Criptografar.Pastas_Arquivos('Files')
@@ -902,7 +902,7 @@ def Laco_Funcoes(opcao):
         if (Classes.Existe_Arquivo(files + '\\' + despesa + '\\' + ano_criptografado + '\\' + mes_criptografado + '.txt') == False):
             Classes.Esperar()
             print('        |')
-            print('        | Não há despesas neste mês!')
+            print('        | Nao ha despesas neste mes!')
             print('        |')
             enter = input('        | Aperte ENTER para continuar.')
             return Laco_Funcoes(opcao)
@@ -911,10 +911,10 @@ def Laco_Funcoes(opcao):
         #---Informando os itens a serem exibidos---#
         print('        |')
         print('        | 01 - Mostrar apenas Despesas Fixas')
-        print('        | 02 - Mostrar apenas Despesas variáveis')
+        print('        | 02 - Mostrar apenas Despesas variaveis')
         print('        | 03 - Motras todas')
         print('        |')
-        classificacao = input('        | Informe a opção: ')
+        classificacao = input('        | Informe a opcao: ')
         if classificacao == '':
             return Operacao_Cancelada(opcao)
         if len(classificacao) < 2:
@@ -940,7 +940,7 @@ def Laco_Funcoes(opcao):
             if classificacao == '01':
                 print('        |                                         Despesas Fixas - ' + mes + '/' + ano)
             elif classificacao == '02':
-                print('        |                                     Despesas Variáveis - ' + mes + '/' + ano)
+                print('        |                                     Despesas Variaveis - ' + mes + '/' + ano)
             else:
                 print('        |                                      Todas as Despesas - ' + mes + '/' + ano)
 
@@ -966,7 +966,7 @@ def Laco_Funcoes(opcao):
             
         else:
             print('        |')
-            print('        | Não há despesas neste mês!')
+            print('        | Nao ha despesas neste mes!')
 
         print('        |')
         print('        |')
@@ -984,14 +984,14 @@ def Laco_Funcoes(opcao):
         print('        |___________________________|')
         print('        |')
 
-        #---Informando o Mês---#
-        mes = input('        | Informe o mês: ')
+        #---Informando o Mes---#
+        mes = input('        | Informe o mes: ')
         if mes == '':
             return SubOpcoes('12')
         retorno = Validar.Mes(mes)
         if (retorno == False):
             while (retorno == False):
-                mes = input('        | Mês incorreto. Informe novamente: ')
+                mes = input('        | Mes incorreto. Informe novamente: ')
                 if mes == '':
                     return Operacao_Cancelada(opcao)
                 retorno = Validar.Mes(mes)
@@ -1030,12 +1030,12 @@ def Laco_Funcoes(opcao):
             print('        |')
             print('        |             Recebimentos - ' + mes + '/' + ano)
 
-                                 #exclusão, mes, ano, consulta_apenas_saldo
+                                 #exclusao, mes, ano, consulta_apenas_saldo
             Consultar.Recebimento(False, mes, ano, False)
 
         else:
             print('        |')
-            print('        | Não há recebimentos neste mês!')
+            print('        | Nao ha recebimentos neste mes!')
 
         print('        |')
         enter = input('        | Aperte ENTER para continuar.')
@@ -1052,14 +1052,14 @@ def Laco_Funcoes(opcao):
         print('        |')
 
         try:
-            #---Informando o Mês---#
-            mes = input('        | Informe o mês: ')
+            #---Informando o Mes---#
+            mes = input('        | Informe o mes: ')
             if mes == '':
                 return SubOpcoes('13')
             retorno = Validar.Mes(mes)
             if (retorno == False):
                 while (retorno == False):
-                    mes = input('        | Mês incorreto. Informe novamente: ')
+                    mes = input('        | Mes incorreto. Informe novamente: ')
                     if mes == '':
                         return Operacao_Cancelada(opcao)
                     retorno = Validar.Mes(mes)
@@ -1110,21 +1110,21 @@ def Laco_Funcoes(opcao):
                 lista_descricao_tipo_despesa        =   []
                 lista_descricao_forma_pagamento     =   []
                 
-                                                                                                                                                                        #exclusão, mes, ano, filtro (03 = todas)
+                                                                                                                                                                        #exclusao, mes, ano, filtro (03 = todas)
                 lista_codigo, lista_descricao, lista_valor, lista_dia, lista_classificacao, lista_codigo_tipo_despesa, lista_codigo_forma_pagamento = Consultar.Despesa(True, mes, ano, '03')
 
                             
                 print('        |')
-                codigo = input('        | Informe o código da despesa que deseja excluir: ')
+                codigo = input('        | Informe o codigo da despesa que deseja excluir: ')
                 if codigo == '':
                     return Operacao_Cancelada(opcao)
 
-                #---Devolvendo o codigo sem os possíveis 0's na frente---#
+                #---Devolvendo o codigo sem os possiveis 0's na frente---#
                 codigo = Validar.Codigo(codigo)
                 
                 if (codigo not in lista_codigo):
                     while (codigo not in lista_codigo):
-                        codigo = input('        | Despesa não existente. Informe novamente: ')
+                        codigo = input('        | Despesa nao existente. Informe novamente: ')
                         if codigo == '':
                             return Operacao_Cancelada(opcao)
                         codigo = Validar.Codigo(codigo)
@@ -1148,7 +1148,7 @@ def Laco_Funcoes(opcao):
 
                         lista_bloco = []
 
-                        #---Criptografando as informações---#
+                        #---Criptografando as informacões---#
                         for i in range(len(lista_codigo)):
                             lista_bloco.append(Criptografar.Despesa(lista_codigo[i], lista_descricao[i], lista_valor[i], lista_dia[i], lista_classificacao[i], lista_codigo_tipo_despesa[i], lista_codigo_forma_pagamento[i]))
 
@@ -1157,7 +1157,7 @@ def Laco_Funcoes(opcao):
 
                     Classes.Esperar()
                     print('        |')
-                    print('        | Despesa excluída com sucesso')
+                    print('        | Despesa excluida com sucesso')
                     Classes.Esperar()
                     
                 else:
@@ -1165,24 +1165,24 @@ def Laco_Funcoes(opcao):
                 
             else:
                 print('        |')
-                print('        | Não há despesas neste mês!')
+                print('        | Nao ha despesas neste mes!')
 
             print('        |')
             enter = input('        | Aperte ENTER para continuar.')
             return Laco_Funcoes(opcao)
 
-        #---Para caso não seja possível fazer conversões---#
+        #---Para caso nao seja possivel fazer conversões---#
         except ValueError:
-            print('        | Arquivo corrompido. Não foi possível fazer a conversão.')
+            print('        | Arquivo corrompido. Nao foi possivel fazer a conversao.')
             print('        | ')
             Classes.Esperar = input('        | Aperte Enter para continuar..')
-            Gravar.Log('Método Excluir Despesa - Arquivo Controle Gastos: ')
+            Gravar.Log('Metodo Excluir Despesa - Arquivo Controle Gastos: ')
             sys.exit() 
             
         except Exception as erro:
-            print('        | Ocorreu um erro na execução do método: Verifique o Log')
+            print('        | Ocorreu um erro na execucao do metodo: Verifique o Log')
             Classes.Esperar = input('        | Aperte Enter para continuar..')
-            Gravar.Log('Método Excluir Despesa - Arquivo Controle Gastos: ' + str(erro))
+            Gravar.Log('Metodo Excluir Despesa - Arquivo Controle Gastos: ' + str(erro))
             sys.exit()
 
     if opcao == '132':
@@ -1196,14 +1196,14 @@ def Laco_Funcoes(opcao):
         print('        |')
 
         try:
-            #---Informando o Mês---#
-            mes = input('        | Informe o mês: ')
+            #---Informando o Mes---#
+            mes = input('        | Informe o mes: ')
             if mes == '':
                 return SubOpcoes('13')
             retorno = Validar.Mes(mes)
             if (retorno == False):
                 while (retorno == False):
-                    mes = input('        | Mês incorreto. Informe novamente: ')
+                    mes = input('        | Mes incorreto. Informe novamente: ')
                     if mes == '':
                         return Operacao_Cancelada(opcao)
                     retorno = Validar.Mes(mes)
@@ -1251,16 +1251,16 @@ def Laco_Funcoes(opcao):
                 lista_codigo, lista_valor, lista_dia = Consultar.Recebimento(True, mes, ano, False)
 
                 print('        |')
-                codigo = input('        | Informe o código do recebimento que deseja excluir: ')
+                codigo = input('        | Informe o codigo do recebimento que deseja excluir: ')
                 if codigo == '':
                     return Operacao_Cancelada(opcao)
 
-                #---Devolvendo o codigo sem os possíveis 0's na frente---#
+                #---Devolvendo o codigo sem os possiveis 0's na frente---#
                 codigo = Validar.Codigo(codigo)
                 
                 if (codigo not in lista_codigo):
                     while (codigo not in lista_codigo):
-                        codigo = input('        | Recebimento não existente. Informe novamente: ')
+                        codigo = input('        | Recebimento nao existente. Informe novamente: ')
                         if codigo == '':
                             return Operacao_Cancelada(opcao)
                         codigo = Validar.Codigo(codigo)
@@ -1280,7 +1280,7 @@ def Laco_Funcoes(opcao):
                         
                         lista_bloco = []
 
-                        #---Criptografando as informações---#
+                        #---Criptografando as informacões---#
                         for i in range(len(lista_codigo)):
                             lista_bloco.append(Criptografar.Recebimento(lista_codigo[i], lista_valor[i], lista_dia[i]))
 
@@ -1289,31 +1289,31 @@ def Laco_Funcoes(opcao):
 
                     Classes.Esperar()
                     print('        |')
-                    print('        | Recebimento excluído com sucesso')
+                    print('        | Recebimento excluido com sucesso')
                     Classes.Esperar()
                     
                 else:
                     return Operacao_Cancelada(opcao)
             else:
                 print('        |')
-                print('        | Não há recebimentos neste mês!')
+                print('        | Nao ha recebimentos neste mes!')
 
             print('        |')
             enter = input('        | Aperte ENTER para continuar.')
             return Laco_Funcoes(opcao)
 
-        #---Para caso não seja possível fazer conversões---#
+        #---Para caso nao seja possivel fazer conversões---#
         except ValueError:
-            print('        | Arquivo corrompido. Não foi possível fazer a conversão.')
+            print('        | Arquivo corrompido. Nao foi possivel fazer a conversao.')
             print('        | ')
             Classes.Esperar = input('        | Aperte Enter para continuar..')
-            Gravar.Log('Método Excluir Recebimento - Arquivo Controle Gastos: ')
+            Gravar.Log('Metodo Excluir Recebimento - Arquivo Controle Gastos: ')
             sys.exit() 
             
         except Exception as erro:
-            print('        | Ocorreu um erro na execução do método: Verifique o Log')
+            print('        | Ocorreu um erro na execucao do metodo: Verifique o Log')
             Classes.Esperar = input('        | Aperte Enter para continuar..')
-            Gravar.Log('Método Excluir Recebimento - Arquivo Controle Gastos: ' + str(erro))
+            Gravar.Log('Metodo Excluir Recebimento - Arquivo Controle Gastos: ' + str(erro))
             sys.exit()
 
     if opcao == '3':
@@ -1327,9 +1327,9 @@ def Laco_Funcoes(opcao):
             return Menu()
                 
         except Exception as erro:
-            print('        | Ocorreu um erro na execução do método: Verifique o Log')
+            print('        | Ocorreu um erro na execucao do metodo: Verifique o Log')
             Classes.Esperar = input('        | Aperte Enter para continuar..')
-            Gravar.Log('Método Excluir Recebimento - Arquivo Controle Gastos: ' + str(erro))
+            Gravar.Log('Metodo Excluir Recebimento - Arquivo Controle Gastos: ' + str(erro))
             sys.exit()
 
     #---Configurar---#
@@ -1385,7 +1385,7 @@ def Laco_Funcoes(opcao):
                         
                         else:
                             print('        |')
-                            print('        | Senhas não coincidem!')
+                            print('        | Senhas nao coincidem!')
                             Classes.Esperar()
                             return Menu()
 
@@ -1396,7 +1396,7 @@ def Laco_Funcoes(opcao):
                         return Menu()
                         
                     else:
-                        print('\n       | Caractere "' + validacao_senha + '" não aceito')
+                        print('\n       | Caractere "' + validacao_senha + '" nao aceito')
                         Classes.Esperar()
                         return Menu()
                         
@@ -1405,18 +1405,18 @@ def Laco_Funcoes(opcao):
                     Classes.Esperar()
                     return Menu()
 
-        #---Para caso não seja possível fazer conversões---#
+        #---Para caso nao seja possivel fazer conversões---#
         except ValueError:
-            print('        | Arquivo corrompido. Não foi possível fazer a conversão.')
+            print('        | Arquivo corrompido. Nao foi possivel fazer a conversao.')
             print('        | ')
             Classes.Esperar = input('        | Aperte Enter para continuar..')
-            Gravar.Log('Método Alterar Senha - Arquivo Configurações: ')
+            Gravar.Log('Metodo Alterar Senha - Arquivo Configuracões: ')
             sys.exit()        
 
         except Exception as erro:
-            print('        | Ocorreu um erro na execução do método: Verifique o Log')
+            print('        | Ocorreu um erro na execucao do metodo: Verifique o Log')
             Classes.Esperar = input('        | Aperte Enter para continuar..')
-            Gravar.Log('Método Alterar Senha - Arquivo Configurações: ' + str(erro))
+            Gravar.Log('Metodo Alterar Senha - Arquivo Configuracões: ' + str(erro))
             sys.exit()
 
     if opcao == '221':
@@ -1439,12 +1439,12 @@ def Laco_Funcoes(opcao):
 
                 if int(codigo) > 99:
                     print('        |')
-                    print('        | Não há mais espaço para criação de formas de pagamento. ')
+                    print('        | Nao ha mais espaco para criacao de formas de pagamento. ')
                     Classes.Esperar()
                     Classes.Esperar()
                     return SubOpcoes('22')
 
-            descricao = input('        | Informe a Descrição da forma de pagamento: ')
+            descricao = input('        | Informe a Descricao da forma de pagamento: ')
             if descricao == '':
                 return SubOpcoes('22')
                 
@@ -1452,17 +1452,17 @@ def Laco_Funcoes(opcao):
             if ( retorno != '0'):
                 while (retorno != '0'):
                     if retorno == '1':
-                        descricao = input('        | Incorreto. A descrição deve ter entre 3 e 22 caracteres. Informe novamente: ')
+                        descricao = input('        | Incorreto. A descricao deve ter entre 3 e 22 caracteres. Informe novamente: ')
                         if descricao == '':
                             return Operacao_Cancelada(opcao)
                     else:
-                        descricao = input('        | Incorreto. Caractere "' + retorno + '" não aceito. Informe novamente: ')
+                        descricao = input('        | Incorreto. Caractere "' + retorno + '" nao aceito. Informe novamente: ')
                         if descricao == '':
                             return Operacao_Cancelada(opcao)
 
                     retorno = Validar.Descricao_Forma_Pagamento(descricao)
             print('        |')
-            pagamento_parcelado = input('        | Este tipo de pagamento é em formas de parcelas? (S/N): ')
+            pagamento_parcelado = input('        | Este tipo de pagamento e em formas de parcelas? (S/N): ')
             pagamento_parcelado = pagamento_parcelado.upper()
             if pagamento_parcelado == '':
                 return Operacao_Cancelada(opcao)
@@ -1490,11 +1490,11 @@ def Laco_Funcoes(opcao):
             lista_vazia = []
             Gravar.Forma_Pagamento(bloco, lista_vazia)
             print('        |')
-            print('        | Forma de pagamento incluída com sucesso!')
+            print('        | Forma de pagamento incluida com sucesso!')
             Classes.Esperar()
             enter = input ('        | Aperte ENTER para continuar.')
 
-            #---Aumentando em 1 o código da Forma de pagamento---#
+            #---Aumentando em 1 o codigo da Forma de pagamento---#
             try:
                 codigo = int(codigo)
                 codigo = codigo + 1
@@ -1510,23 +1510,23 @@ def Laco_Funcoes(opcao):
                     return Laco_Funcoes(opcao)
 
             except Exception as erro:
-                print('        | Ocorreu um erro na execução do método: Verifique o Log')
+                print('        | Ocorreu um erro na execucao do metodo: Verifique o Log')
                 Classes.Esperar = input('        | Aperte Enter para continuar..')
-                Gravar.Log('Método Incluir Forma Pagamento (atualizando registro de código) - Arquivo Configurações (risco de sobrescrita de registros): ' + str(erro))
+                Gravar.Log('Metodo Incluir Forma Pagamento (atualizando registro de codigo) - Arquivo Configuracões (risco de sobrescrita de registros): ' + str(erro))
                 sys.exit()
 
-        #---Para caso não seja possível fazer conversões---#
+        #---Para caso nao seja possivel fazer conversões---#
         except ValueError:
-            print('        | Arquivo corrompido. Não foi possível fazer a conversão.')
+            print('        | Arquivo corrompido. Nao foi possivel fazer a conversao.')
             print('        | ')
             Classes.Esperar = input('        | Aperte Enter para continuar..')
-            Gravar.Log('Método Incluir Forma de Pagamento - Arquivo Configurações: ')
+            Gravar.Log('Metodo Incluir Forma de Pagamento - Arquivo Configuracões: ')
             sys.exit()        
             
         except Exception as erro:
-            print('        | Ocorreu um erro na execução do método: Verifique o Log')
+            print('        | Ocorreu um erro na execucao do metodo: Verifique o Log')
             Classes.Esperar = input('        | Aperte Enter para continuar..')
-            Gravar.Log('Método Incluir Forma Pagamento - Arquivo Configurações: ' + str(erro))
+            Gravar.Log('Metodo Incluir Forma Pagamento - Arquivo Configuracões: ' + str(erro))
             sys.exit()
 
     if opcao == '222':
@@ -1542,7 +1542,7 @@ def Laco_Funcoes(opcao):
         try:                                                                                                      #alteracao, pagamento_parcelado, consulta_para_despesa
             lista_codigo, lista_descricao, lista_pagamento_parcelado, lista_status = Consultar.Forma_Pagamento(True, False, False)
             print('        |')
-            codigo_alterar = input('        | Informe o código da forma de pagamento que deseja alterar: ')
+            codigo_alterar = input('        | Informe o codigo da forma de pagamento que deseja alterar: ')
 
             if codigo_alterar == '':
                 return SubOpcoes('22')
@@ -1553,7 +1553,7 @@ def Laco_Funcoes(opcao):
             
             if codigo_alterar not in lista_codigo:
                 while codigo_alterar not in lista_codigo:
-                    codigo_alterar = input('        | Código não existente. Informe novamente: ')
+                    codigo_alterar = input('        | Codigo nao existente. Informe novamente: ')
                     if codigo_alterar == '':
                         return Operacao_Cancelada(opcao)
                     if len(codigo_alterar) < 2:
@@ -1561,10 +1561,10 @@ def Laco_Funcoes(opcao):
 
                     
             print('        |')
-            print('        | Informe as novas informações desta forma de pagamento')
+            print('        | Informe as novas informacões desta forma de pagamento')
 
-            #---Informando a nova descrição---#
-            nova_descricao = input('        | Descrição: ')
+            #---Informando a nova descricao---#
+            nova_descricao = input('        | Descricao: ')
             if nova_descricao == '':
                 Operacao_Cancelada(opcao)
 
@@ -1572,18 +1572,18 @@ def Laco_Funcoes(opcao):
             if ( retorno != '0'):
                 while (retorno != '0'):
                     if retorno == '1':
-                        nova_descricao = input('        | Incorreto. A descrição deve ter entre 3 e 22 caracteres. Informe novamente: ')
+                        nova_descricao = input('        | Incorreto. A descricao deve ter entre 3 e 22 caracteres. Informe novamente: ')
                         if nova+descricao == '':
                             return Operacao_Cancelada(opcao)
                     else:
-                        nova_descricao = input('        | Incorreto. Caractere "' + retorno + '" não aceito. Informe novamente: ')
+                        nova_descricao = input('        | Incorreto. Caractere "' + retorno + '" nao aceito. Informe novamente: ')
                         if nova_descricao == '':
                             return Operacao_Cancelada(opcao)
                     retorno = Validar.Descricao_Forma_Pagamento(nova_descricao)
                     
             #---Informando o novo Pagamento Parcelado---#
             print('        |')
-            novo_pagamento_parcelado = input('        | Este tipo de pagamento é em formas de parcelas? (S/N): ')
+            novo_pagamento_parcelado = input('        | Este tipo de pagamento e em formas de parcelas? (S/N): ')
             if novo_pagamento_parcelado == '':
                 Operacao_Cancelada(opcao)
 
@@ -1639,18 +1639,18 @@ def Laco_Funcoes(opcao):
             else:
                 return Operacao_Cancelada(opcao)
 
-        #---Para caso não seja possível fazer conversões---#
+        #---Para caso nao seja possivel fazer conversões---#
         except ValueError:
-            print('        | Arquivo corrompido. Não foi possível fazer a conversão.')
+            print('        | Arquivo corrompido. Nao foi possivel fazer a conversao.')
             print('        | ')
             Classes.Esperar = input('        | Aperte Enter para continuar..')
-            Gravar.Log('Método ALterar Forma de Pagamento - Arquivo Configurações: ')
+            Gravar.Log('Metodo ALterar Forma de Pagamento - Arquivo Configuracões: ')
             sys.exit()
             
         except Exception as erro:
-            print('        | Ocorreu um erro na execução do método: Verifique o Log')
+            print('        | Ocorreu um erro na execucao do metodo: Verifique o Log')
             Classes.Esperar = input('        | Aperte Enter para continuar..')
-            Gravar.Log('Método Alterar Forma Pagamento - Arquivo Configurações: ' + str(erro))
+            Gravar.Log('Metodo Alterar Forma Pagamento - Arquivo Configuracões: ' + str(erro))
             sys.exit()
 
     if opcao == '231':
@@ -1673,12 +1673,12 @@ def Laco_Funcoes(opcao):
 
                 if int(codigo) > 99:
                     print('        |')
-                    print('        | Não há mais espaço para criação de tipos de despesa.')
+                    print('        | Nao ha mais espaco para criacao de tipos de despesa.')
                     Classes.Esperar()
                     Classes.Esperar()
                     return SubOpcoes('23')
 
-            descricao = input('        | Informe a Descrição do tipo de despesa: ')
+            descricao = input('        | Informe a Descricao do tipo de despesa: ')
             if descricao == '':
                 return SubOpcoes('23')
 
@@ -1686,11 +1686,11 @@ def Laco_Funcoes(opcao):
             if (retorno != '0'):
                 while (retorno != '0'):
                     if retorno == '1':
-                        descricao = input('        | Incorreto. A descrição deve ter entre 3 e 20 caracteres. Informe novamente: ')
+                        descricao = input('        | Incorreto. A descricao deve ter entre 3 e 20 caracteres. Informe novamente: ')
                         if descricao == '':
                             return Operacao_Cancelada(opcao)
                     else:
-                        descricao = input('        | Incorreto. Caractere "' + retorno + '" não aceito. Informe novamente: ')
+                        descricao = input('        | Incorreto. Caractere "' + retorno + '" nao aceito. Informe novamente: ')
                         if descricao == '':
                             return Operacao_Cancelada(opcao)
                     retorno = Validar.Descricao_Tipo_Despesa(descricao)
@@ -1705,11 +1705,11 @@ def Laco_Funcoes(opcao):
             lista_vazia = []
             Gravar.Tipo_Despesa(bloco, lista_vazia)
             print('        |')
-            print('        | Tipo de despesa incluído com sucesso!')
+            print('        | Tipo de despesa incluido com sucesso!')
             Classes.Esperar()
             enter = input('        | Aperte ENTER para continuar.')
 
-            #---Aumentando em 1 o código do Tipo de Despesa---#
+            #---Aumentando em 1 o codigo do Tipo de Despesa---#
             try:
                 codigo = int(codigo)
                 codigo = codigo + 1
@@ -1726,23 +1726,23 @@ def Laco_Funcoes(opcao):
                     return Laco_Funcoes(opcao)
 
             except Exception as erro:
-                print('        | Ocorreu um erro na execução do método: Verifique o Log')
+                print('        | Ocorreu um erro na execucao do metodo: Verifique o Log')
                 Classes.Esperar = input('        | Aperte Enter para continuar..')
-                Gravar.Log('Método Incluir Tipo Despesa (atualizando registro de código) - Arquivo Configurações (risco de sobrescrita de registros): ' + str(erro))
+                Gravar.Log('Metodo Incluir Tipo Despesa (atualizando registro de codigo) - Arquivo Configuracões (risco de sobrescrita de registros): ' + str(erro))
                 sys.exit()
                 
-        #---Para caso não seja possível fazer conversões---#
+        #---Para caso nao seja possivel fazer conversões---#
         except ValueError:
-            print('        | Arquivo corrompido. Não foi possível fazer a conversão.')
+            print('        | Arquivo corrompido. Nao foi possivel fazer a conversao.')
             print('        | ')
             Classes.Esperar = input('        | Aperte Enter para continuar..')
-            Gravar.Log('Método Incluir Tipo Despesa - Arquivo Configurações: ')
+            Gravar.Log('Metodo Incluir Tipo Despesa - Arquivo Configuracões: ')
             sys.exit()        
                 
         except Exception as erro:
-            print('        | Ocorreu um erro na execução do método: Verifique o Log')
+            print('        | Ocorreu um erro na execucao do metodo: Verifique o Log')
             Classes.Esperar = input('        | Aperte Enter para continuar..')
-            Gravar.Log('Método Incluir Tipo Despesa - Arquivo Configurações: ' + str(erro))
+            Gravar.Log('Metodo Incluir Tipo Despesa - Arquivo Configuracões: ' + str(erro))
             sys.exit()
 
     if opcao == '232':
@@ -1764,7 +1764,7 @@ def Laco_Funcoes(opcao):
             lista_codigo, lista_descricao, lista_status = Consultar.Tipo_Despesa(True, False)
 
             print('        | ')
-            codigo_alterar = input('        | Informe o código do tipo de despesa que deseja alterar: ')
+            codigo_alterar = input('        | Informe o codigo do tipo de despesa que deseja alterar: ')
 
             if codigo_alterar == '':
                 return SubOpcoes('23')
@@ -1775,17 +1775,17 @@ def Laco_Funcoes(opcao):
 
             if codigo_alterar not in lista_codigo:
                 while codigo_alterar not in lista_codigo:
-                    codigo_alterar = input('        | Código não existente. Informe novamnete: ')
+                    codigo_alterar = input('        | Codigo nao existente. Informe novamnete: ')
                     if codigo_alterar == '':
                         return Operacao_Cancelada(opcao)
                     if len(codigo_alterar) < 2:
                         codigo_alterar = '0' + codigo_alterar
 
             print('        | ')
-            print('        | Informe as novas informações deste tipo de despesa: ')
+            print('        | Informe as novas informacões deste tipo de despesa: ')
 
-            #---Informando a nova descrição---#
-            nova_descricao = input('        | Descrição: ')
+            #---Informando a nova descricao---#
+            nova_descricao = input('        | Descricao: ')
             if nova_descricao == '':
                 Operacao_Cancelada(opcao)
 
@@ -1793,11 +1793,11 @@ def Laco_Funcoes(opcao):
             if (retorno != '0'):
                 while (retorno != '0'):
                     if retorno == '1':
-                        nova_descricao = input('        | Incorreto. A descrição deve ter entre 3 e 20 caracteres. Informe novamente: ')
+                        nova_descricao = input('        | Incorreto. A descricao deve ter entre 3 e 20 caracteres. Informe novamente: ')
                         if nova_descricao == '':
                             return Operacao_Cancelada(opcao)
                     else:
-                        nova_descricao = input('        | Incorreto. Caractere "' + retorno + '" não aceito. Informe novamnete: ')
+                        nova_descricao = input('        | Incorreto. Caractere "' + retorno + '" nao aceito. Informe novamnete: ')
                         if nova_descricao == '':
                             return Operacao_Cancelada(opcao)
                     retorno = Validar.Descricao_Tipo_Despesa(nova_descricao)
@@ -1842,18 +1842,18 @@ def Laco_Funcoes(opcao):
             else:
                 return Operacao_Cancelada(opcao)
 
-        #---Para caso não seja possível fazer conversões---#
+        #---Para caso nao seja possivel fazer conversões---#
         except ValueError:
-            print('        | Arquivo corrompido. Não foi possível fazer a conversão.')
+            print('        | Arquivo corrompido. Nao foi possivel fazer a conversao.')
             print('        | ')
             Classes.Esperar = input('        | Aperte Enter para continuar..')
-            Gravar.Log('Método Alterar Tipo Despesa - Arquivo Configurações: ')
+            Gravar.Log('Metodo Alterar Tipo Despesa - Arquivo Configuracões: ')
             sys.exit()        
 
         except Exception as erro:
-            print('        | Ocorreu um erro na execução do método: Verifique o Log')
+            print('        | Ocorreu um erro na execucao do metodo: Verifique o Log')
             Classes.Esperar = input('        | Aperte Enter para continuar..')
-            Gravar.Log('Método Alterar Tipo Despesa - Arquivo Configurações: ' + str(erro))
+            Gravar.Log('Metodo Alterar Tipo Despesa - Arquivo Configuracões: ' + str(erro))
             sys.exit()
 
     if opcao == '24':
@@ -1865,10 +1865,10 @@ def Laco_Funcoes(opcao):
         print('        |                      |')
         print('        |______________________|')
         print('        |')
-        print('        | ATENÇÃO')
+        print('        | ATENCAO')
         Classes.Esperar()
         print('        | ')
-        print('        | Esta opção irá resetar TODAS as informações. É recomendado tirar um backup Antes')
+        print('        | Esta opcao ira resetar TODAS as informacões. E recomendado tirar um backup Antes')
         Classes.Esperar()
         print('        | ')
         confirmar = input('        | Deseja mesmo resetar o programa? (S/N): ')
@@ -1886,9 +1886,9 @@ def Laco_Funcoes(opcao):
                 return Menu()
 
             except Exception as erro:
-                print('        | Ocorreu um erro na execução do método: Verifique o Log')
+                print('        | Ocorreu um erro na execucao do metodo: Verifique o Log')
                 Classes.Esperar = input('        | Aperte Enter para continuar..')
-                Gravar.Log('Método Alterar Tipo Despesa - Arquivo Configurações: ' + str(erro))
+                Gravar.Log('Metodo Alterar Tipo Despesa - Arquivo Configuracões: ' + str(erro))
                 sys.exit()
         else:
             return Menu()
@@ -1903,10 +1903,10 @@ if os.path.isdir(files) == True:
 else:
     print('        ____________________________________________________')
     print('        |                                                  |')
-    print('        |    Não foram encontrados registros do sistema    |')
+    print('        |    Nao foram encontrados registros do sistema    |')
     print('        |--------------------------------------------------|')
     print('        |')
-    comecar = input('        | Deseja começar? (S/N): ')
+    comecar = input('        | Deseja comecar? (S/N): ')
     comecar = comecar.upper()
 
     if comecar == 'S':
@@ -1915,16 +1915,16 @@ else:
             Classes.Esperar()
             print('        |')
             print('        |')
-            print('        | Programa iniciado com sucesso. Sua senha é 12345678, mas é recomendado a sua troca.')
+            print('        | Programa iniciado com sucesso. Sua senha e 12345678, mas e recomendado a sua troca.')
             Classes.Esperar()
             print('        |')
-            confirmar = input('        | Aperte ENTER para continuar. Após isso, o programa será encerrado. Abra-o novamente e informe a sua senha.')
+            confirmar = input('        | Aperte ENTER para continuar. Apos isso, o programa sera encerrado. Abra-o novamente e informe a sua senha.')
         except:
-            print('        | Não foi possível criar os registros. Verifique se o programa possui permissão para leitura de gravação de arquivos.')
+            print('        | Nao foi possivel criar os registros. Verifique se o programa possui permissao para leitura de gravacao de arquivos.')
             Classes.Esperar()
             sys.exit
     else:
         print('        |')
-        print('        | Até logo.')
+        print('        | Ate logo.')
         Classes.Esperar()
         sys.exit()

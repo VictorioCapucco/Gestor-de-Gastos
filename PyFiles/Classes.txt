@@ -9,7 +9,7 @@ import os
 
 
 
-#---Funções Gerais---#
+#---Funcões Gerais---#
 def Esperar_Relatorio():
     for contagem in range(0,1):
         sleep(0.03)
@@ -19,7 +19,7 @@ def Esperar():
         sleep(1)
 
 def Fim_Programa():
-    print('        |\n        | Até Logo!')
+    print('        |\n        | Ate Logo!')
     Esperar()
     sys.exit()
 
@@ -37,11 +37,11 @@ def Bubble_Sort_Despesa(lista_codigo, lista_descricao, lista_valor, lista_dia, l
         for i in range(len(lista_codigo)-1, 0, -1):
             for j in range (i):
                 if int(lista_dia[j]) > int(lista_dia[j+1]):
-                    #---Ordenando o código---#
+                    #---Ordenando o codigo---#
                     temporario          = lista_codigo[j]
                     lista_codigo[j]     = lista_codigo[j+1]
                     lista_codigo[j+1]   = temporario
-                    #---Ordenando a Descrição---#
+                    #---Ordenando a Descricao---#
                     temporario              = lista_descricao[j]
                     lista_descricao[j]      = lista_descricao[j+1]
                     lista_descricao[j+1]    = temporario
@@ -53,7 +53,7 @@ def Bubble_Sort_Despesa(lista_codigo, lista_descricao, lista_valor, lista_dia, l
                     temporario      = lista_dia[j]
                     lista_dia[j]    = lista_dia[j+1]
                     lista_dia[j+1]  = temporario
-                    #---Ordenando a classificação---#
+                    #---Ordenando a classificacao---#
                     temporario                  = lista_classificacao[j]
                     lista_classificacao[j]      = lista_classificacao[j+1]
                     lista_classificacao[j+1]    = temporario
@@ -67,12 +67,12 @@ def Bubble_Sort_Despesa(lista_codigo, lista_descricao, lista_valor, lista_dia, l
                     lista_codigo_forma_pagamento[j+1]   = temporario
         return lista_codigo, lista_descricao, lista_valor, lista_dia, lista_classificacao, lista_codigo_tipo_despesa, lista_codigo_forma_pagamento
 
-    #---Para caso não seja possível fazer conversões---#
+    #---Para caso nao seja possivel fazer conversões---#
     except ValueError:
-        print('        | Arquivo corrompido. Não foi possível fazer a conversão.')
+        print('        | Arquivo corrompido. Nao foi possivel fazer a conversao.')
         print('        | ')
         esperar = input('        | Aperte Enter para continuar..')
-        Gravar.Log('Método Bubble Sort Despesa - Arquivo Consultas: ')
+        Gravar.Log('Metodo Bubble Sort Despesa - Arquivo Consultas: ')
         sys.exit() 
 
 
@@ -82,7 +82,7 @@ def Bubble_Sort_Recebimento(lista_codigo, lista_valor, lista_dia):
         for i in range(len(lista_codigo)-1, 0, -1):
             for j in range (i):
                 if int(lista_dia[j]) > int(lista_dia[j+1]):
-                    #---Ordenando o código---#
+                    #---Ordenando o codigo---#
                     temporario          = lista_codigo[j]
                     lista_codigo[j]     = lista_codigo[j+1]
                     lista_codigo[j+1]   = temporario
@@ -97,12 +97,12 @@ def Bubble_Sort_Recebimento(lista_codigo, lista_valor, lista_dia):
                     
         return lista_codigo, lista_valor, lista_dia  
 
-    #---Para caso não seja possível fazer conversões---#
+    #---Para caso nao seja possivel fazer conversões---#
     except ValueError:
-        print('        | Arquivo corrompido. Não foi possível fazer a conversão.')
+        print('        | Arquivo corrompido. Nao foi possivel fazer a conversao.')
         print('        | ')
         esperar = input('        | Aperte Enter para continuar..')
-        Gravar.Log('Método Bubble Sort Recebimento - Arquivo Consultas: ')
+        Gravar.Log('Metodo Bubble Sort Recebimento - Arquivo Consultas: ')
         sys.exit()
 
 
@@ -130,7 +130,7 @@ def Resetar():
         if os.path.isdir(files) == True:
             shutil.rmtree(files)
 
-        #---Criação das pastas---#
+        #---Criacao das pastas---#
         os.mkdir(files)
         os.mkdir(files + '\\' + despesa)
         os.mkdir(files + '\\' + recebimento)
@@ -139,7 +139,7 @@ def Resetar():
         os.mkdir(files + '\\' + senha)
         os.mkdir(files + '\\' + logs)
 
-        #---Criação dos arquivos---#
+        #---Criacao dos arquivos---#
         with open(files + '\\' + despesa + '\\' + codigo_despesa + '.txt', 'w') as Gerar_Arquivo_Despesa:
             Gerar_Arquivo_Despesa.write(Criptografar.Pastas_Arquivos(str(randint(0,100))))
 
@@ -159,9 +159,9 @@ def Resetar():
 
     except Exception as erro:
         print('        | ')
-        print('        | Ocorreu um erro na execução do método. Verifique o Log')
+        print('        | Ocorreu um erro na execucao do metodo. Verifique o Log')
         esperar = input('        | Aperte Enter para continuar..')
-        Gravar.Log('Método Resetar - Arquivo Pastas Arquivos: ' + str(erro))
+        Gravar.Log('Metodo Resetar - Arquivo Pastas Arquivos: ' + str(erro))
         sys.exit()
         
 
@@ -205,9 +205,9 @@ class Consultar:
             #---Ordenando com base no dia---#
             lista_codigo, lista_descricao, lista_valor, lista_dia, lista_classificacao, lista_codigo_tipo_despesa, lista_codigo_forma_pagamento = Bubble_Sort_Despesa(lista_codigo, lista_descricao, lista_valor, lista_dia, lista_classificacao, lista_codigo_tipo_despesa, lista_codigo_forma_pagamento)
 
-                                                                                                            #Alteração, consulta_para_despesa
+                                                                                                            #Alteracao, consulta_para_despesa
             lista_todos_codigo_tipo_despesa, lista_todos_descricao_tipo_despesa         = Consultar.Tipo_Despesa(False, True)
-                                                                                                                #Alteração, pagamento_parcelado, consulta_para_despesa
+                                                                                                                #Alteracao, pagamento_parcelado, consulta_para_despesa
             lista_todos_codigo_forma_pagamento, lista_todos_descricao_forma_pagamento   = Consultar.Forma_Pagamento(False, False, True)
             
             lista_codigo_consulta                       =   []
@@ -226,21 +226,21 @@ class Consultar:
             variavel_descricao_tipo_despesa     =   ''
             variavel_descricao_forma_pagamento  =   ''
 
-            #---Alinhando as descrições de forma de pagamento e tipo de despesa com seus respectivos códigos---#
+            #---Alinhando as descricões de forma de pagamento e tipo de despesa com seus respectivos codigos---#
             for i in range(len(lista_codigo)):
-                #---Adicionando as descrições correspondentes do tipo de despesa---#
+                #---Adicionando as descricões correspondentes do tipo de despesa---#
                 index_codigo_tipo_despesa   =   lista_todos_codigo_tipo_despesa.index(lista_codigo_tipo_despesa[i])
                 lista_descricao_tipo_despesa.append(lista_todos_descricao_tipo_despesa[index_codigo_tipo_despesa])
 
-                #---Adicionando as decrições correspondentes da forma de pagamento---#
+                #---Adicionando as decricões correspondentes da forma de pagamento---#
                 index_codigo_forma_pagamento    =   lista_todos_codigo_forma_pagamento.index(lista_codigo_forma_pagamento[i])
                 lista_descricao_forma_pagamento.append(lista_todos_descricao_forma_pagamento[index_codigo_forma_pagamento])
 
 
-            #---Ajustando o tamanho das variáveis para impressão na tela---#
+            #---Ajustando o tamanho das variaveis para impressao na tela---#
             for i in range(len(lista_codigo)):
 
-                #---Criando consulta dos códigos---#
+                #---Criando consulta dos codigos---#
                 variavel_codigo = lista_codigo[i]
                 while len(variavel_codigo) < 5:
                     variavel_codigo = '0' + variavel_codigo
@@ -249,7 +249,7 @@ class Consultar:
                 variavel_codigo = '| ' + variavel_codigo
                 lista_codigo_consulta.append(variavel_codigo)
 
-                #---Criando consulta das descrições---#
+                #---Criando consulta das descricões---#
                 variavel_descricao = lista_descricao[i]
                 while len(variavel_descricao) < 32:
                     variavel_descricao += ' '
@@ -266,21 +266,21 @@ class Consultar:
                 variavel_dia += '  '
                 lista_dia_consulta.append(variavel_dia)
 
-                #---Criando consulta das classificações---#
+                #---Criando consulta das classificacões---#
                 if lista_classificacao[i] == '0':                
-                    variavel_classificacao = 'não'
+                    variavel_classificacao = 'nao'
                 else:
                     variavel_classificacao = 'sim'
                 variavel_classificacao += '   '
                 lista_classificacao_consulta.append(variavel_classificacao)
 
-                #---Criando consulta da descrição do tipo de despesa---#
+                #---Criando consulta da descricao do tipo de despesa---#
                 variavel_descricao_tipo_despesa = lista_descricao_tipo_despesa[i]
                 while len(variavel_descricao_tipo_despesa) < 21:
                     variavel_descricao_tipo_despesa += ' '
                 lista_descricao_tipo_despesa_consulta.append(variavel_descricao_tipo_despesa)
 
-                #---Criando consulta da descrição da forma de pagamento---#
+                #---Criando consulta da descricao da forma de pagamento---#
                 variavel_descricao_forma_pagamento = lista_descricao_forma_pagamento[i]
                 while len(variavel_descricao_forma_pagamento) < 22:
                     variavel_descricao_forma_pagamento += ' '
@@ -289,7 +289,7 @@ class Consultar:
 
             print('        |   _________________________________________________________________________________________________________')
             print('        |   |                                                                                                       |')
-            print('        |   | Codigo  Descrição                        Valor     Dia   Tipo de Despesa       Forma de Pagamento     |')
+            print('        |   | Codigo  Descricao                        Valor     Dia   Tipo de Despesa       Forma de Pagamento     |')
             print('        |   |_______________________________________________________________________________________________________|')
             soma_valor = 0
             #---Mostrar apenas despesas fixas---#
@@ -299,7 +299,7 @@ class Consultar:
                     if (lista_classificacao[i] == '0'):
                         print('        |  ', lista_codigo_consulta[i], lista_descricao_consulta[i], lista_valor_consulta[i], lista_dia_consulta[i], lista_descricao_tipo_despesa_consulta[i], lista_descricao_forma_pagamento_consulta[i])
                         soma_valor += float(lista_valor[i])
-            #---Mostrar apenas despesas variáveis---#
+            #---Mostrar apenas despesas variaveis---#
             elif (filtro == '02'):
                 for i in range(len(lista_codigo)):
                     Esperar_Relatorio()
@@ -328,18 +328,18 @@ class Consultar:
             else:
                 return soma_valor
 
-        #---Para caso não seja possível fazer conversões---#
+        #---Para caso nao seja possivel fazer conversões---#
         except ValueError:
-            print('        | Arquivo corrompido. Não foi possível fazer a conversão.')
+            print('        | Arquivo corrompido. Nao foi possivel fazer a conversao.')
             print('        | ')
             esperar = input('        | Aperte Enter para continuar..')
-            Gravar.Log('Método Despesa - Arquivo Consultas: ')
+            Gravar.Log('Metodo Despesa - Arquivo Consultas: ')
             sys.exit() 
 
         except Exception as erro:
-            print('        | Ocorreu um erro na execução do método: Verifique o Log')
+            print('        | Ocorreu um erro na execucao do metodo: Verifique o Log')
             esperar = input('        | Aperte Enter para continuar..')
-            Gravar.Log('Método Despesa  - Arquivo Consultas: ' + str(erro))
+            Gravar.Log('Metodo Despesa  - Arquivo Consultas: ' + str(erro))
             sys.exit()
 
                         #Boolean, Boolean, Boolean
@@ -356,7 +356,7 @@ class Consultar:
                 lista_pagamento_parcelado = []
                 lista_status = []
                 arquivo = Ler_Arquivo_Forma_Pagamento.readlines()
-                #---Se for para alteração de registros---#
+                #---Se for para alteracao de registros---#
                 if (alteracao == True):
                     for bloco in arquivo:
                         lista_arquivo = Descriptografar.Forma_Pagamento(bloco)
@@ -414,14 +414,14 @@ class Consultar:
             variavel_status = ''
             for i in range(len(lista_codigo)):
 
-                #---Criando consulta dos códigos---#
+                #---Criando consulta dos codigos---#
                 variavel_codigo = '|   ' + lista_codigo[i]
                 while len(variavel_codigo) < 10:
                     variavel_codigo = variavel_codigo + ' '
                 lista_codigo_consulta.append(variavel_codigo)
 
                 if (alteracao == True):
-                    #---Criando consulta das descrições---#
+                    #---Criando consulta das descricões---#
                     variavel_descricao = lista_descricao[i]
                     while len(variavel_descricao) < 35:
                         variavel_descricao = variavel_descricao + ' '
@@ -429,7 +429,7 @@ class Consultar:
 
                     #---Criando consulta do pagamento parcelado---#
                     if lista_pagamento_parcelado[i] == '0':
-                        variavel_pagamento_parcelado = 'não'
+                        variavel_pagamento_parcelado = 'nao'
                     else:
                         variavel_pagamento_parcelado = 'sim'
                     variavel_pagamento_parcelado += '      '
@@ -437,13 +437,13 @@ class Consultar:
 
                     #---Criando consulta do status---#
                     if lista_status[i] == '0':
-                        variavel_status = 'não'
+                        variavel_status = 'nao'
                     else:
                         variavel_status = 'sim'
                     variavel_status += '  |'
                     lista_status_consulta.append(variavel_status)
                 else:
-                    #---Criando consulta das descrições---#
+                    #---Criando consulta das descricões---#
                     variavel_descricao = lista_descricao[i]
                     while len(variavel_descricao) < 33:
                         variavel_descricao = variavel_descricao + ' '
@@ -452,7 +452,7 @@ class Consultar:
             if (alteracao == True):
                 print('        |   _______________________________________________________________')
                 Esperar_Relatorio()
-                print('        |   | Código   Descrição                        Parcelado   Ativo |')
+                print('        |   | Codigo   Descricao                        Parcelado   Ativo |')
                 Esperar_Relatorio()
                 print('        |   |-------------------------------------------------------------|')
                 for i in range(len(lista_codigo)):
@@ -463,7 +463,7 @@ class Consultar:
             else:
                 print('        |   ______________________________________________')
                 Esperar_Relatorio()
-                print('        |   | Código   Descrição                         |')
+                print('        |   | Codigo   Descricao                         |')
                 Esperar_Relatorio()
                 print('        |   |--------------------------------------------|')
                 for i in range(len(lista_codigo)):
@@ -476,18 +476,18 @@ class Consultar:
             else:
                 return lista_codigo
             
-        #---Para caso não seja possível fazer conversões---#
+        #---Para caso nao seja possivel fazer conversões---#
         except ValueError:
-            print('        | Arquivo corrompido. Não foi possível fazer a conversão.')
+            print('        | Arquivo corrompido. Nao foi possivel fazer a conversao.')
             print('        | ')
             esperar = input('        | Aperte Enter para continuar..')
-            Gravar.Log('Método Forma Pagamento - Arquivo Consultas: ')
+            Gravar.Log('Metodo Forma Pagamento - Arquivo Consultas: ')
             sys.exit() 
 
         except Exception as erro:
-            print('        | Ocorreu um erro na execução do método: Verifique o Log')
+            print('        | Ocorreu um erro na execucao do metodo: Verifique o Log')
             esperar = input('        | Aperte Enter para continuar..')
-            Gravar.Log('Método Forma Pagamento  - Arquivo Consultas: ' + str(erro))
+            Gravar.Log('Metodo Forma Pagamento  - Arquivo Consultas: ' + str(erro))
             sys.exit()
             
 
@@ -529,10 +529,10 @@ class Consultar:
             variavel_valor      =   ''
             variavel_dia        =   ''
 
-            #---Ajustando o tamanho das variáveis para impressão na tela---#
+            #---Ajustando o tamanho das variaveis para impressao na tela---#
             for i in range(len(lista_codigo)):
 
-                #---Criando consulta dos códigos---#
+                #---Criando consulta dos codigos---#
                 variavel_codigo = lista_codigo[i]
                 while len(variavel_codigo) < 5:
                     variavel_codigo = '0' + variavel_codigo
@@ -574,18 +574,18 @@ class Consultar:
             else:
                 return lista_codigo, lista_valor, lista_dia
 
-        #---Para caso não seja possível fazer conversões---#
+        #---Para caso nao seja possivel fazer conversões---#
         except ValueError:
-            print('        | Arquivo corrompido. Não foi possível fazer a conversão.')
+            print('        | Arquivo corrompido. Nao foi possivel fazer a conversao.')
             print('        | ')
             esperar = input('        | Aperte Enter para continuar..')
-            Gravar.Log('Método Recebimento - Arquivo Consultas: ')
+            Gravar.Log('Metodo Recebimento - Arquivo Consultas: ')
             sys.exit() 
 
         except Exception as erro:
-            print('        | Ocorreu um erro na execução do método: Verifique o Log')
+            print('        | Ocorreu um erro na execucao do metodo: Verifique o Log')
             esperar = input('        | Aperte Enter para continuar..')
-            Gravar.Log('Método Recebimento  - Arquivo Consultas: ' + str(erro))
+            Gravar.Log('Metodo Recebimento  - Arquivo Consultas: ' + str(erro))
             sys.exit()
             
 
@@ -643,14 +643,14 @@ class Consultar:
                 
             for i in range(len(lista_codigo)):
 
-                #---Criando consulta dos códigos---#
+                #---Criando consulta dos codigos---#
                 variavel_codigo = '|   ' + lista_codigo[i]
                 while len(variavel_codigo) < 10:
                     variavel_codigo = variavel_codigo + ' '
                 lista_codigo_consulta.append(variavel_codigo)
 
                 if (alteracao == True):
-                    #---Criando consulta das descrições---#
+                    #---Criando consulta das descricões---#
                     variavel_descricao = lista_descricao[i]
                     while len(variavel_descricao) < 40:
                         variavel_descricao = variavel_descricao + ' '
@@ -658,13 +658,13 @@ class Consultar:
                 
                     #---Criando consulta dos status---#
                     if lista_status[i] == '0':
-                        variavel_status = 'não'
+                        variavel_status = 'nao'
                     else:
                         variavel_status = 'sim'
                     variavel_status += '  |'
                     lista_status_consulta.append(variavel_status)
                 else:
-                    #---Criando consulta das descrições---#
+                    #---Criando consulta das descricões---#
                     variavel_descricao = lista_descricao[i]
                     while len(variavel_descricao) < 38:
                         variavel_descricao = variavel_descricao + ' '
@@ -673,7 +673,7 @@ class Consultar:
             if (alteracao == True):
                 print('        |   __________________________________________________________')
                 Esperar_Relatorio()
-                print('        |   | Código   Descrição                               Ativo |')
+                print('        |   | Codigo   Descricao                               Ativo |')
                 Esperar_Relatorio()
                 print('        |   |--------------------------------------------------------|')
 
@@ -685,7 +685,7 @@ class Consultar:
             else:
                 print('        |   ___________________________________________________')
                 Esperar_Relatorio()
-                print('        |   | Código   Descrição                              |')
+                print('        |   | Codigo   Descricao                              |')
                 Esperar_Relatorio()
                 print('        |   |-------------------------------------------------|')
 
@@ -700,18 +700,18 @@ class Consultar:
             else:
                 return lista_codigo
 
-        #---Para caso não seja possível fazer conversões---#
+        #---Para caso nao seja possivel fazer conversões---#
         except ValueError:
-            print('        | Arquivo corrompido. Não foi possível fazer a conversão.')
+            print('        | Arquivo corrompido. Nao foi possivel fazer a conversao.')
             print('        | ')
             esperar = input('        | Aperte Enter para continuar..')
-            Gravar.Log('Método Tipo Despesa - Arquivo Consultas: ')
+            Gravar.Log('Metodo Tipo Despesa - Arquivo Consultas: ')
             sys.exit() 
 
         except Exception as erro:
-            print('        | Ocorreu um erro na execução do método: Verifique o Log')
+            print('        | Ocorreu um erro na execucao do metodo: Verifique o Log')
             esperar = input('        | Aperte Enter para continuar..')
-            Gravar.Log('Método Tipo Despesa  - Arquivo Consultas: ' + str(erro))
+            Gravar.Log('Metodo Tipo Despesa  - Arquivo Consultas: ' + str(erro))
             sys.exit()
 
 
@@ -722,91 +722,91 @@ class Criptografar:
 
             valor = valor[0:-3] + valor[-2:]
 
-            #---Posição 0 a 6---#
+            #---Posicao 0 a 6---#
             for i in range(0,5):
                 informacao_criptografada += str(randint(0,9))
 
-            #---Posição 7 a 8---#
+            #---Posicao 7 a 8---#
             if len(codigo) < 10:
                 informacao_criptografada += Criptografar.Caracteres('0')
             informacao_criptografada += Criptografar.Caracteres(str(len(codigo)))
 
-            #---Posição 9 a 18---#
+            #---Posicao 9 a 18---#
             informacao_criptografada += Criptografar.Caracteres(codigo)
             while len(informacao_criptografada) < 19:
                 informacao_criptografada += str(randint(0,9))
 
-            #---Posição 19 a 23---#
+            #---Posicao 19 a 23---#
             for i in range(0,5):
                 informacao_criptografada += str(randint(0,9))
 
-            #---Posição 24 a 27---#
+            #---Posicao 24 a 27---#
             if len(descricao) < 10:
                 informacao_criptografada += Criptografar.Caracteres('0')
             informacao_criptografada += Criptografar.Caracteres(str(len(descricao)))
 
-            #---Posição 28 a 87---#
+            #---Posicao 28 a 87---#
             informacao_criptografada += Criptografar.Caracteres(descricao)
             while len(informacao_criptografada) < 88:
                 informacao_criptografada += str(randint(0,9))
 
-            #---Posição 88 a 92---#
+            #---Posicao 88 a 92---#
             for i in range(0,5):
                 informacao_criptografada += str(randint(0,9))
 
-            #---Posição 93 a 94---#
+            #---Posicao 93 a 94---#
             informacao_criptografada += Criptografar.Caracteres(str(len(valor)))
             
 
-            #---Posição 95 a 108---#
+            #---Posicao 95 a 108---#
             informacao_criptografada += Criptografar.Caracteres(valor)
             while len(informacao_criptografada) < 109:
                 informacao_criptografada += str(randint(0,9))
 
-            #---Posição 109 a 112---#
+            #---Posicao 109 a 112---#
             if len(dia) < 2:
                 informacao_criptografada += Criptografar.Caracteres('0')
             informacao_criptografada += Criptografar.Caracteres(dia)
 
-            #---Posição 113 a 117---#
+            #---Posicao 113 a 117---#
             for i in range(0,5):
                 informacao_criptografada += str(randint(0,9))
 
-            #---Posição 118 a 119---#
+            #---Posicao 118 a 119---#
             informacao_criptografada += Criptografar.Caracteres(classificacao)
 
-            #---Posição 120 a 123---#
+            #---Posicao 120 a 123---#
             if len(tipo_despesa) < 2:
                 informacao_criptografada += Criptografar.Caracteres('0')
             informacao_criptografada += Criptografar.Caracteres(tipo_despesa)
 
-            #---Posição 124 a 128---#
+            #---Posicao 124 a 128---#
             for i in range(0,5):
                 informacao_criptografada += str(randint(0,9))
 
-            #---Posição 129 a 132---#
+            #---Posicao 129 a 132---#
             if len(forma_pagamento) < 2:
                 informacao_criptografada += Criptografar.Caracteres('0')
             informacao_criptografada += Criptografar.Caracteres(forma_pagamento)
 
-            #---Posição 133 a 149---#
+            #---Posicao 133 a 149---#
             while len(informacao_criptografada) < 150:
                 informacao_criptografada += str(randint(0,9))
 
             return informacao_criptografada
 
-        #---Para caso não seja possível fazer conversões---#
+        #---Para caso nao seja possivel fazer conversões---#
         except ValueError:
-            print('        | Arquivo corrompido. Não foi possível fazer a conversão.')
+            print('        | Arquivo corrompido. Nao foi possivel fazer a conversao.')
             print('        | ')
             esperar = input('        | Aperte Enter para continuar..')
-            Gravar.Log('Método Criptografar - Arquivo Despesa: ')
+            Gravar.Log('Metodo Criptografar - Arquivo Despesa: ')
             sys.exit() 
 
         except Exception as erro:
-            print('\nOcorreu um erro na execução do método. Verifique o Log')
+            print('\nOcorreu um erro na execucao do metodo. Verifique o Log')
             esperar = input('Aperte Enter para continuar..')
-            Gravar.Log('Método Criptografar - Arquivo Despesa: ' + str(erro))
+            Gravar.Log('Metodo Criptografar - Arquivo Despesa: ' + str(erro))
             sys.exit()
 
 
@@ -814,64 +814,64 @@ class Criptografar:
         try:
             informacao_criptografada = ''
 
-            #---Posição 0 a 6---#
+            #---Posicao 0 a 6---#
             for i in range(0,5):
                 informacao_criptografada += str(randint(0,9))
 
-            #---Posição 7 a 8---#
+            #---Posicao 7 a 8---#
             if len(codigo) < 10:
                 informacao_criptografada += Criptografar.Caracteres('0')
             informacao_criptografada += Criptografar.Caracteres(str(len(codigo)))
 
-            #---Posição 9 a 12---#
+            #---Posicao 9 a 12---#
             informacao_criptografada += Criptografar.Caracteres(codigo)
             while len(informacao_criptografada) < 13:
                 informacao_criptografada += str(randint(0,9))
 
-            #---Posição 13 a 17---#
+            #---Posicao 13 a 17---#
             for i in range(0,5):
                 informacao_criptografada += str(randint(0,9))
 
-            #---Posição 18 a 21---#
+            #---Posicao 18 a 21---#
             if len(descricao) < 10:
                 informacao_criptografada += Criptografar.Caracteres('0')
             informacao_criptografada += Criptografar.Caracteres(str(len(descricao)))
 
-            #---Posição 22 a 65---#
+            #---Posicao 22 a 65---#
             informacao_criptografada += Criptografar.Caracteres(descricao)
             while len(informacao_criptografada) < 66:
                 informacao_criptografada += str(randint(0,9))
 
-            #---Posição 66 a 67---#
+            #---Posicao 66 a 67---#
             informacao_criptografada += Criptografar.Caracteres(pagamento_parcelado)
 
-            #---Posição 68 a 72---#
+            #---Posicao 68 a 72---#
             for i in range(0,5):
                 informacao_criptografada += str(randint(0,9))
 
-            #---Posição 73 a 74---#
+            #---Posicao 73 a 74---#
             informacao_criptografada += Criptografar.Caracteres(status)
 
-            #---Posição 75 a 149---#
+            #---Posicao 75 a 149---#
             while len(informacao_criptografada) < 150:
                 informacao_criptografada += str(randint(0,9))
 
             return informacao_criptografada
         
 
-        #---Para caso não seja possível fazer conversões---#
+        #---Para caso nao seja possivel fazer conversões---#
         except ValueError:
-            print('        | Arquivo corrompido. Não foi possível fazer a conversão.')
+            print('        | Arquivo corrompido. Nao foi possivel fazer a conversao.')
             print('        | ')
             esperar = input('        | Aperte Enter para continuar..')
-            Gravar.Log('Método Criptografar - Arquivo Forma Pagamento: ')
+            Gravar.Log('Metodo Criptografar - Arquivo Forma Pagamento: ')
             sys.exit() 
         
         except Exception as erro:
             print('        | ')
-            print('        | Ocorreu um erro na execução do método. Verifique o Log')
+            print('        | Ocorreu um erro na execucao do metodo. Verifique o Log')
             esperar = input('        | Aperte Enter para continuar..')
-            Gravar.Log('Método Criptografar - Arquivo Forma Pagamento: ' + str(erro))
+            Gravar.Log('Metodo Criptografar - Arquivo Forma Pagamento: ' + str(erro))
             sys.exit()
             
 
@@ -881,55 +881,55 @@ class Criptografar:
 
             valor = valor[0:-3] + valor[-2:]
 
-            #---Posição 0 a 6---#
+            #---Posicao 0 a 6---#
             for i in range(0,5):
                 informacao_criptografada += str(randint(0,9))
 
-            #---Posição 7 a 8---#
+            #---Posicao 7 a 8---#
             if len(codigo) < 10:
                 informacao_criptografada += Criptografar.Caracteres('0')
             informacao_criptografada += Criptografar.Caracteres(str(len(codigo)))
 
-            #---Posição 9 a 16---#
+            #---Posicao 9 a 16---#
             informacao_criptografada += Criptografar.Caracteres(codigo)
             while len(informacao_criptografada) < 17:
                 informacao_criptografada += str(randint(0,9))
 
-            #---Posição 17 a 21---#
+            #---Posicao 17 a 21---#
             for i in range(0,5):
                 informacao_criptografada += str(randint(0,9))
 
-            #---Posição 22 a 23---#
+            #---Posicao 22 a 23---#
             informacao_criptografada += Criptografar.Caracteres(str(len(valor)))
 
-            #---Posição 24 a 37---#
+            #---Posicao 24 a 37---#
             informacao_criptografada += Criptografar.Caracteres(valor)
             while len(informacao_criptografada) < 38:
                 informacao_criptografada += str(randint(0,9))
 
-            #---Posição 38 a 41---#
+            #---Posicao 38 a 41---#
             if len(dia) < 2:
                 informacao_criptografada += Criptografar.Caracteres('0')
             informacao_criptografada += Criptografar.Caracteres(dia)
 
-            #---Posição 42 a 149---#
+            #---Posicao 42 a 149---#
             while len(informacao_criptografada) < 150:
                 informacao_criptografada += str(randint(0,9))
 
             return informacao_criptografada
 
-        #---Para caso não seja possível fazer conversões---#
+        #---Para caso nao seja possivel fazer conversões---#
         except ValueError:
-            print('        | Arquivo corrompido. Não foi possível fazer a conversão.')
+            print('        | Arquivo corrompido. Nao foi possivel fazer a conversao.')
             print('        | ')
             esperar = input('        | Aperte Enter para continuar..')
-            Gravar.Log('Método Criptografar - Arquivo Recebimento: ')
+            Gravar.Log('Metodo Criptografar - Arquivo Recebimento: ')
             sys.exit() 
         
         except Exception as erro:
-            print('\nOcorreu um erro na execução do método. Verifique o Log')
+            print('\nOcorreu um erro na execucao do metodo. Verifique o Log')
             esperar = input('Aperte Enter para continuar..')
-            Gravar.Log('Método Criptografar - Arquivo Recebimento: ' + str(erro))
+            Gravar.Log('Metodo Criptografar - Arquivo Recebimento: ' + str(erro))
             sys.exit()
 
 
@@ -964,9 +964,9 @@ class Criptografar:
                     Arquivo_Senha.write(str(randint(0,9)))
                     
         except Exception as erro:
-            print('        | Ocorreu um erro na execução do método. Verifique o Log')
+            print('        | Ocorreu um erro na execucao do metodo. Verifique o Log')
             esperar = input('        | Aperte Enter para continuar..')
-            Gravar.Log('Método Criptografar - Arquivo Senha: ')
+            Gravar.Log('Metodo Criptografar - Arquivo Senha: ')
             sys.exit()
 
 
@@ -974,61 +974,61 @@ class Criptografar:
         try:
             informacao_criptografada = ''
 
-            #---Posição 0 a 6---#
+            #---Posicao 0 a 6---#
             for i in range(0,5):
                 informacao_criptografada += str(randint(0,9))
 
-            #---Posição 7 a 8---#
+            #---Posicao 7 a 8---#
             if len(codigo) < 10:
                 informacao_criptografada += Criptografar.Caracteres('0')
             informacao_criptografada += Criptografar.Caracteres(str(len(codigo)))
 
-            #---Posição 9 a 12---#
+            #---Posicao 9 a 12---#
             informacao_criptografada += Criptografar.Caracteres(codigo)
             while len(informacao_criptografada) < 13:
                 informacao_criptografada += str(randint(0,9))
 
-            #---Posição 13 a 17---#
+            #---Posicao 13 a 17---#
             for i in range(0,5):
                 informacao_criptografada += str(randint(0,9))
 
-            #---Posição 18 a 21---#
+            #---Posicao 18 a 21---#
             if len(descricao) < 10:
                 informacao_criptografada += Criptografar.Caracteres('0')
             informacao_criptografada += Criptografar.Caracteres(str(len(descricao)))
 
-            #---Posição 22 a 61---#
+            #---Posicao 22 a 61---#
             informacao_criptografada += Criptografar.Caracteres(descricao)
             while len(informacao_criptografada) < 62:
                 informacao_criptografada += str(randint(0,9))
 
-            #---Posição 62 a 63---#
+            #---Posicao 62 a 63---#
             informacao_criptografada += Criptografar.Caracteres(status)
 
-            #---Posição 64 a 149---#
+            #---Posicao 64 a 149---#
             while len(informacao_criptografada) < 150:
                 informacao_criptografada += str(randint(0,9))
             
             return informacao_criptografada
 
-        #---Para caso não seja possível fazer conversões---#
+        #---Para caso nao seja possivel fazer conversões---#
         except ValueError:
-            print('        | Arquivo corrompido. Não foi possível fazer a conversão.')
+            print('        | Arquivo corrompido. Nao foi possivel fazer a conversao.')
             print('        | ')
             esperar = input('        | Aperte Enter para continuar..')
-            Gravar.Log('Método Criptografar - Arquivo Tipo Despesa: ')
+            Gravar.Log('Metodo Criptografar - Arquivo Tipo Despesa: ')
             sys.exit() 
         
         except Exception as erro:
             print('        |')
-            print('        | Ocorreu um erro na execução do método. Verifique o Log')
+            print('        | Ocorreu um erro na execucao do metodo. Verifique o Log')
             esperar = input('        | Aperte Enter para continuar..')
-            Gravar.Log('Método Criptografar - Arquivo Tipo Despesa: ' + str(erro))
+            Gravar.Log('Metodo Criptografar - Arquivo Tipo Despesa: ' + str(erro))
             sys.exit()
 
 
     def Pastas_Arquivos(informacao):
-        Caracteres = ['Ù', 'N', 'á', 'U', 'W', '3', 'x', 'V', 'i', 'Ò', 'Í', '4', 'u', '6', 'I', 'G', 'Ì', 'H', '/', 'É', 'ã', 'ó', 'R', 'n', 'ô', 'Ñ', 'ù', 'E', 'À', 'Ç', 'd', '1', 'Q', 'ñ', 'à', 's', 'h', 'v', 'a', 'X', 'Y', 'é', 'o', 'F', 'l', 'r', '2', 'y', 'J', 'b', 'Ã', 'T', 'D', 'K', 'A', 'È', 'Ô', 'Á', 'c', 'Z', 'M', 'Ú', 'C', 'ò', '5', 'k', 'j', 'g', 'S', 'ç', 'z', 'O', '0', 'ú', 'P', 'q', '7', 'w', 'f', 'ì', '8', 'm', 'B', 'è', 'L', 'í', 't', 'Ó', '9', 'e', 'p', ' ']
+        Caracteres = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'X', 'W', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'x', 'w', 'y', 'z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '/', ' ']
         try:
             informacao_criptografada = ''
             tamanho_informacao = len(informacao)
@@ -1043,19 +1043,19 @@ class Criptografar:
                 informacao_criptografada += index_caractere
             return informacao_criptografada
 
-        #---Para caso não seja possível fazer conversões---#
+        #---Para caso nao seja possivel fazer conversões---#
         except ValueError:
-            print('        | Arquivo corrompido. Não foi possível fazer a conversão.')
+            print('        | Arquivo corrompido. Nao foi possivel fazer a conversao.')
             print('        | ')
             esperar = input('        | Aperte Enter para continuar..')
-            Gravar.Log('Método Criptografar - Arquivo Pastas Arquivos: ')
+            Gravar.Log('Metodo Criptografar - Arquivo Pastas Arquivos: ')
             sys.exit() 
 
         except Exception as erro:
             print('        |')
-            print('        | Ocorreu um erro na execução do método. Verifique o Log')
+            print('        | Ocorreu um erro na execucao do metodo. Verifique o Log')
             esperar = input('        | Aperte Enter para continuar..')
-            Gravar.Log('Método Criptografar - Arquivo Pastas Arquivos: ' + str(erro))
+            Gravar.Log('Metodo Criptografar - Arquivo Pastas Arquivos: ' + str(erro))
             sys.exit()
 
     def Caracteres(caracteres):
@@ -1067,19 +1067,19 @@ class Criptografar:
                 caractere_criptografado += str(lista.index(caracteres[i]))
             return caractere_criptografado
 
-        #---Para caso não seja possível fazer conversões---#
+        #---Para caso nao seja possivel fazer conversões---#
         except ValueError:
-            print('        | Arquivo corrompido. Não foi possível fazer a conversão.')
+            print('        | Arquivo corrompido. Nao foi possivel fazer a conversao.')
             print('        | ')
             esperar = input('        | Aperte Enter para continuar..')
-            Gravar.Log('Método Criptografar - Arquivo Caracteres: ')
+            Gravar.Log('Metodo Criptografar - Arquivo Caracteres: ')
             sys.exit() 
         
         except Exception as erro:
             print('        |')
-            print('        | Ocorreu um erro na execução do método. Verifique o Log')
+            print('        | Ocorreu um erro na execucao do metodo. Verifique o Log')
             esperar = input('        | Aperte Enter para continuar..')
-            Gravar.Log('Método Criptografar - Arquivo Caracteres: ' + str(erro))
+            Gravar.Log('Metodo Criptografar - Arquivo Caracteres: ' + str(erro))
             sys.exit()
 
 
@@ -1132,18 +1132,18 @@ class Descriptografar:
             lista_despesa.append(forma_pagamento)
             return lista_despesa
         
-        #---Para caso não seja possível fazer conversões---#
+        #---Para caso nao seja possivel fazer conversões---#
         except ValueError:
-            print('        | Arquivo corrompido. Não foi possível fazer a conversão.')
+            print('        | Arquivo corrompido. Nao foi possivel fazer a conversao.')
             print('        | ')
             esperar = input('        | Aperte Enter para continuar..')
-            Gravar.Log('Método Descriptografar - Arquivo Despesa: ')
+            Gravar.Log('Metodo Descriptografar - Arquivo Despesa: ')
             sys.exit() 
 
         except Exception as erro:
-            print('        | Ocorreu um erro na execução do método. Verifique o Log')
+            print('        | Ocorreu um erro na execucao do metodo. Verifique o Log')
             esperar = input('        | Aperte Enter para continuar..')
-            Gravar.Log('Método Descriptografar - Arquivo Despesa: ' + str(erro))
+            Gravar.Log('Metodo Descriptografar - Arquivo Despesa: ' + str(erro))
             sys.exit()
 
 
@@ -1179,19 +1179,19 @@ class Descriptografar:
             lista_forma_pagamento.append(status_forma_pagamento)
             return lista_forma_pagamento
         
-        #---Para caso não seja possível fazer conversões---#
+        #---Para caso nao seja possivel fazer conversões---#
         except ValueError:
-            print('        | Arquivo corrompido. Não foi possível fazer a conversão.')
+            print('        | Arquivo corrompido. Nao foi possivel fazer a conversao.')
             print('        | ')
             esperar = input('        | Aperte Enter para continuar..')
-            Gravar.Log('Método Descriptografar - Arquivo Forma Pagamento: ')
+            Gravar.Log('Metodo Descriptografar - Arquivo Forma Pagamento: ')
             sys.exit() 
         
         except Exception as erro:
             print('        | ')
-            print('        | Ocorreu um erro na execução do método. Verifique o Log')
+            print('        | Ocorreu um erro na execucao do metodo. Verifique o Log')
             esperar = input('        | Aperte Enter para continuar..')
-            Gravar.Log('Método Descriptografar - Arquivo Forma Pagamento: ' + str(erro))
+            Gravar.Log('Metodo Descriptografar - Arquivo Forma Pagamento: ' + str(erro))
             sys.exit()
 
     def Recebimento(bloco):
@@ -1222,18 +1222,18 @@ class Descriptografar:
             lista_recebimento.append(dia_recebimento)
             return lista_recebimento
 
-        #---Para caso não seja possível fazer conversões---#
+        #---Para caso nao seja possivel fazer conversões---#
         except ValueError:
-            print('        | Arquivo corrompido. Não foi possível fazer a conversão.')
+            print('        | Arquivo corrompido. Nao foi possivel fazer a conversao.')
             print('        | ')
             esperar = input('        | Aperte Enter para continuar..')
-            Gravar.Log('Método Descriptografar - Arquivo Recebimento: ')
+            Gravar.Log('Metodo Descriptografar - Arquivo Recebimento: ')
             sys.exit() 
         
         except Exception as erro:
-            print('\nOcorreu um erro na execução do método. Verifique o Log')
+            print('\nOcorreu um erro na execucao do metodo. Verifique o Log')
             esperar = input('Aperte Enter para continuar..')
-            Gravar.Log('Método Descriptografar - Arquivo Recebimento: ' + str(erro))
+            Gravar.Log('Metodo Descriptografar - Arquivo Recebimento: ' + str(erro))
             sys.exit()
 
 
@@ -1254,9 +1254,9 @@ class Descriptografar:
                 senha = Descriptografar.Caracteres(senha)
             return senha
         except Exception as erro:
-            print('        | Ocorreu um erro na execução do método. Verifique o Log')
+            print('        | Ocorreu um erro na execucao do metodo. Verifique o Log')
             esperar = input('        | Aperte Enter para continuar..')
-            Gravar.Log('Método Descriptografar - Arquivo Senha: ')
+            Gravar.Log('Metodo Descriptografar - Arquivo Senha: ')
             sys.exit()
 
     def Tipo_Despesa(bloco):
@@ -1285,23 +1285,23 @@ class Descriptografar:
             lista_tipo_despesa.append(status_tipo_despesa)
             return lista_tipo_despesa
 
-        #---Para caso não seja possível fazer conversões---#
+        #---Para caso nao seja possivel fazer conversões---#
         except ValueError:
-            print('        | Arquivo corrompido. Não foi possível fazer a conversão.')
+            print('        | Arquivo corrompido. Nao foi possivel fazer a conversao.')
             print('        | ')
             esperar = input('        | Aperte Enter para continuar..')
-            Gravar.Log('Método Descriptografar - Arquivo Tipo Despesa: ')
+            Gravar.Log('Metodo Descriptografar - Arquivo Tipo Despesa: ')
             sys.exit() 
         
         except Exception as erro:
             print('        | ')
-            print('        | Ocorreu um erro na execução do método. Verifique o Log')
+            print('        | Ocorreu um erro na execucao do metodo. Verifique o Log')
             esperar = input('        | Aperte Enter para continuar..')
-            Gravar.Log('Método Descriptografar - Arquivo Tipo Despesa: ' + str(erro))
+            Gravar.Log('Metodo Descriptografar - Arquivo Tipo Despesa: ' + str(erro))
             sys.exit()
 
     def Pastas_Arquivos(informacao_criptografada):
-        Caracteres = ['Ù', 'N', 'á', 'U', 'W', '3', 'x', 'V', 'i', 'Ò', 'Í', '4', 'u', '6', 'I', 'G', 'Ì', 'H', '/', 'É', 'ã', 'ó', 'R', 'n', 'ô', 'Ñ', 'ù', 'E', 'À', 'Ç', 'd', '1', 'Q', 'ñ', 'à', 's', 'h', 'v', 'a', 'X', 'Y', 'é', 'o', 'F', 'l', 'r', '2', 'y', 'J', 'b', 'Ã', 'T', 'D', 'K', 'A', 'È', 'Ô', 'Á', 'c', 'Z', 'M', 'Ú', 'C', 'ò', '5', 'k', 'j', 'g', 'S', 'ç', 'z', 'O', '0', 'ú', 'P', 'q', '7', 'w', 'f', 'ì', '8', 'm', 'B', 'è', 'L', 'í', 't', 'Ó', '9', 'e', 'p', ' ']
+        Caracteres = ['N', 'U', 'W', '3', 'x', 'V', 'i', '4', 'u', '6', 'I', 'G', 'H', '/', 'R', 'n', 'E', 'd', '1', 'Q', 's', 'h', 'v', 'a', 'X', 'Y', 'o', 'F', 'l', 'r', '2', 'y', 'J', 'b', 'T', 'D', 'K', 'A', 'c', 'Z', 'M', 'C', '5', 'k', 'j', 'g', 'S', 'z', 'O', '0', 'P', 'q', '7', 'w', 'f', '8', 'm', 'B', 'L', 't', '9', 'e', 'p', ' ']
         try:
             informacao_descriptografada = ''
             contador = 0
@@ -1310,19 +1310,19 @@ class Descriptografar:
                 contador += 2
             return informacao_descriptografada
 
-        #---Para caso não seja possível fazer conversões---#
+        #---Para caso nao seja possivel fazer conversões---#
         except ValueError:
-            print('        | Arquivo corrompido. Não foi possível fazer a conversão.')
+            print('        | Arquivo corrompido. Nao foi possivel fazer a conversao.')
             print('        | ')
             esperar = input('        | Aperte Enter para continuar..')
-            Gravar.Log('Método Descriptografar - Arquivo Pastas Arquivos: ')
+            Gravar.Log('Metodo Descriptografar - Arquivo Pastas Arquivos: ')
             sys.exit()
             
         except Exception as erro:
             print('        | ')
-            print('        | Ocorreu um erro na execução do método. Verifique o Log')
+            print('        | Ocorreu um erro na execucao do metodo. Verifique o Log')
             esperar = input('        | Aperte Enter para continuar..')
-            Gravar.Log('Método Descriptografar - Arquivo Pastas Arquivos: ' + str(erro))
+            Gravar.Log('Metodo Descriptografar - Arquivo Pastas Arquivos: ' + str(erro))
             sys.exit()
 
 
@@ -1335,19 +1335,19 @@ class Descriptografar:
                 contador += 2
             return caractere_descriptografado
 
-        #---Para caso não seja possível fazer conversões---#
+        #---Para caso nao seja possivel fazer conversões---#
         except ValueError:
-            print('        | Arquivo corrompido. Não foi possível fazer a conversão.')
+            print('        | Arquivo corrompido. Nao foi possivel fazer a conversao.')
             print('        | ')
             esperar = input('        | Aperte Enter para continuar..')
-            Gravar.Log('Método Descriptografar - Arquivo Caracteres: ')
+            Gravar.Log('Metodo Descriptografar - Arquivo Caracteres: ')
             sys.exit() 
         
         except Exception as erro:
             print('        |')
-            print('        | Ocorreu um erro na execução do método. Verifique o Log')
+            print('        | Ocorreu um erro na execucao do metodo. Verifique o Log')
             esperar = input('        | Aperte Enter para continuar..')
-            Gravar.Log('Método Descriptografar - Arquivo Caracteres: ' + str(erro))
+            Gravar.Log('Metodo Descriptografar - Arquivo Caracteres: ' + str(erro))
             sys.exit()
 
 
@@ -1361,35 +1361,35 @@ class Gravar:
             mes = Criptografar.Pastas_Arquivos(mes)
             ano = Criptografar.Pastas_Arquivos(ano)
 
-            #---Caso não exista a pasta do ano---#
+            #---Caso nao exista a pasta do ano---#
             if (os.path.isdir(files + '\\' + despesa + '\\' + ano) == False):
                 os.mkdir(files + '\\' + despesa + '\\' + ano)
 
-            #---Se a lista estiver vazia, será adicionado uma nova despesa---#
+            #---Se a lista estiver vazia, sera adicionado uma nova despesa---#
             if (len(lista_bloco) == 0):
                 with open(files + '\\' + despesa + '\\' +  ano + '\\' + mes + '.txt', 'a') as Arquivo_Despesa:
                     Arquivo_Despesa.write(bloco)
                     Arquivo_Despesa.write('\n')
-            #---Caso contrário, haverá uma gravação sequencial de todos os registros (por conta de exclusão de um deles---#
+            #---Caso contrario, havera uma gravacao sequencial de todos os registros (por conta de exclusao de um deles---#
             else:
                 with open(files + '\\' + despesa + '\\' +  ano + '\\' + mes + '.txt', 'w') as Arquivo_Despesa:
                     for i in range(len(lista_bloco)):
                         Arquivo_Despesa.write(lista_bloco[i])
                         Arquivo_Despesa.write('\n')
                         
-        #---Para caso não seja possível fazer conversões---#
+        #---Para caso nao seja possivel fazer conversões---#
         except ValueError:
-            print('        | Arquivo corrompido. Não foi possível fazer a conversão.')
+            print('        | Arquivo corrompido. Nao foi possivel fazer a conversao.')
             print('        | ')
             esperar = input('        | Aperte Enter para continuar..')
-            Log('Método Gravar - Arquivo Despesa: ')
+            Log('Metodo Gravar - Arquivo Despesa: ')
             sys.exit()       
             
         except Exception as erro:
             print('        | ')
-            print('        | Ocorreu um erro na execução do método. Verifique o Log')
+            print('        | Ocorreu um erro na execucao do metodo. Verifique o Log')
             esperar = input('        | Aperte Enter para continuar..')
-            Log('Método Gravar - Arquivo Despesa: ' + str(erro))
+            Log('Metodo Gravar - Arquivo Despesa: ' + str(erro))
             sys.exit()
 
 
@@ -1399,33 +1399,33 @@ class Gravar:
             forma_pagamento = Criptografar.Pastas_Arquivos('Forma Pagamento')
             arquivo_forma_pagamento = Criptografar.Pastas_Arquivos('Arquivo Forma Pagamento')
 
-            #---Se a lista estiver vazia, será adicionado uma nova forma de pagamento
+            #---Se a lista estiver vazia, sera adicionado uma nova forma de pagamento
             if (len(lista_bloco) == 0):
                 with open(files + '\\' + forma_pagamento + '\\' + arquivo_forma_pagamento + '.txt', 'a') as Arquivo_Forma_Pagamento:
                     Arquivo_Forma_Pagamento.write(bloco)
                     Arquivo_Forma_Pagamento.write('\n')
                     
-            #---Caso contrário, haverá uma gravação sequencial de todos os registros (por conta de alteração em um deles---#
+            #---Caso contrario, havera uma gravacao sequencial de todos os registros (por conta de alteracao em um deles---#
             else:
                 with open(files + '\\' + forma_pagamento + '\\' + arquivo_forma_pagamento + '.txt', 'w') as Arquivo_Forma_Pagamento:
                     for i in range(len(lista_bloco)):
                         Arquivo_Forma_Pagamento.write(lista_bloco[i])
                         Arquivo_Forma_Pagamento.write('\n')
 
-        #---Para caso não seja possível fazer conversões---#
+        #---Para caso nao seja possivel fazer conversões---#
         except ValueError:
-            print('        | Arquivo corrompido. Não foi possível fazer a conversão.')
+            print('        | Arquivo corrompido. Nao foi possivel fazer a conversao.')
             print('        | ')
             esperar = input('        | Aperte Enter para continuar..')
-            Log('Método Gravar - Arquivo Forma Pagamento: ')
+            Log('Metodo Gravar - Arquivo Forma Pagamento: ')
             sys.exit() 
 
                          
         except Exception as erro:
             print('        | ')
-            print('        | Ocorreu um erro na execução do método. Verifique o Log')
+            print('        | Ocorreu um erro na execucao do metodo. Verifique o Log')
             esperar = input('        | Aperte Enter para continuar..')
-            Log('Método Gravar - Arquivo Forma Pagamento: ' + str(erro))
+            Log('Metodo Gravar - Arquivo Forma Pagamento: ' + str(erro))
             sys.exit()
 
 
@@ -1443,7 +1443,7 @@ class Gravar:
                 Arquivo_Log.write('\n')
         except:
             print('        | ')
-            print('        | Não foi possível gravar o log')
+            print('        | Nao foi possivel gravar o log')
             print('        | ')
             confirmar = input('        | Aperte ENTER para continuar.')
             sys.exit
@@ -1458,35 +1458,35 @@ class Gravar:
             mes = Criptografar.Pastas_Arquivos(mes)
             ano = Criptografar.Pastas_Arquivos(ano)
 
-            #---Caso não exista a pasta do ano---#
+            #---Caso nao exista a pasta do ano---#
             if (os.path.isdir(files + '\\' + recebimento + '\\' + ano) == False):
                 os.mkdir(files + '\\' + recebimento + '\\' + ano)
 
-            #---Se a lista estiver vazia, será adicionado um novo recebimento---#
+            #---Se a lista estiver vazia, sera adicionado um novo recebimento---#
             if (len(lista_bloco) == 0):
                 with open(files + '\\' + recebimento + '\\' +  ano + '\\' + mes + '.txt', 'a') as Arquivo_Recebimento:
                     Arquivo_Recebimento.write(bloco)
                     Arquivo_Recebimento.write('\n')
-            #---Caso contrário, haverá uma gravação sequencial de todos os registros (por conta de exclusão de um deles---#
+            #---Caso contrario, havera uma gravacao sequencial de todos os registros (por conta de exclusao de um deles---#
             else:
                 with open(files + '\\' + recebimento + '\\' +  ano + '\\' + mes + '.txt', 'w') as Arquivo_Recebimento:
                     for i in range(len(lista_bloco)):
                         Arquivo_Recebimento.write(lista_bloco[i])
                         Arquivo_Recebimento.write('\n')
 
-        #---Para caso não seja possível fazer conversões---#
+        #---Para caso nao seja possivel fazer conversões---#
         except ValueError:
-            print('        | Arquivo corrompido. Não foi possível fazer a conversão.')
+            print('        | Arquivo corrompido. Nao foi possivel fazer a conversao.')
             print('        | ')
             esperar = input('        | Aperte Enter para continuar..')
-            Log('Método Gravar - Arquivo Recebimento: ')
+            Log('Metodo Gravar - Arquivo Recebimento: ')
             sys.exit() 
             
         except Exception as erro:
             print('        | ')
-            print('        | Ocorreu um erro na execução do método. Verifique o Log')
+            print('        | Ocorreu um erro na execucao do metodo. Verifique o Log')
             esperar = input('        | Aperte Enter para continuar..')
-            Log('Método Gravar - Arquivo Recebimento: ' + str(erro))
+            Log('Metodo Gravar - Arquivo Recebimento: ' + str(erro))
             sys.exit()
 
 
@@ -1496,32 +1496,32 @@ class Gravar:
             tipo_despesa = Criptografar.Pastas_Arquivos('Tipo Despesa')
             arquivo_tipo_despesa = Criptografar.Pastas_Arquivos('Arquivo Tipo Despesa')
 
-            #---Se a lista estiver vazia, será adicionado uma nova forma de pagamento
+            #---Se a lista estiver vazia, sera adicionado uma nova forma de pagamento
             if (len(lista_bloco) == 0):
                 with open(files + '\\' + tipo_despesa + '\\' + arquivo_tipo_despesa + '.txt', 'a') as Arquivo_Tipo_Despesa:
                     Arquivo_Tipo_Despesa.write(bloco)
                     Arquivo_Tipo_Despesa.write('\n')
                     
-            #---Caso contrário, haverá uma gravação sequencial de todos os registros (por conta de alteração em um deles---#
+            #---Caso contrario, havera uma gravacao sequencial de todos os registros (por conta de alteracao em um deles---#
             else:
                 with open(files + '\\' + tipo_despesa + '\\' + arquivo_tipo_despesa + '.txt', 'w') as Arquivo_Tipo_Despesa:
                     for i in range(len(lista_bloco)):
                         Arquivo_Tipo_Despesa.write(lista_bloco[i])
                         Arquivo_Tipo_Despesa.write('\n')
 
-        #---Para caso não seja possível fazer conversões---#
+        #---Para caso nao seja possivel fazer conversões---#
         except ValueError:
-            print('        | Arquivo corrompido. Não foi possível fazer a conversão.')
+            print('        | Arquivo corrompido. Nao foi possivel fazer a conversao.')
             print('        | ')
             esperar = input('        | Aperte Enter para continuar..')
-            Log('Método Gravar - Arquivo Tipo Despesa: ')
+            Log('Metodo Gravar - Arquivo Tipo Despesa: ')
             sys.exit() 
             
         except Exception as erro:
             print('        | ')
-            print('        | Ocorreu um erro na execução do método. Verifique o Log')
+            print('        | Ocorreu um erro na execucao do metodo. Verifique o Log')
             esperar = input('        | Aperte Enter para continuar..')
-            Log('Método Gravar - Arquivo Tipo Despesa: ' + str(erro))
+            Log('Metodo Gravar - Arquivo Tipo Despesa: ' + str(erro))
             sys.exit()
 
 
@@ -1670,7 +1670,7 @@ def Autenticar():
     print                  ('                          |')
     print                  ('                          |___________________________')
     print                  ('                          |                          |')
-    print                  ('                          |       Autenticação       |')
+    print                  ('                          |       Autenticacao       |')
     print                  ('                          |--------------------------|')
     print                  ('                          |')
     senha = getpass.getpass('                          | Informe a senha: ')
@@ -1681,7 +1681,7 @@ def Autenticar():
         print('                          | Coloque o seu arquivo Chave.txt na mesma pasta deste programa')
         print('                          |')
         Esperar()
-        confirmar = input('                          | Confirme apertando ENTER se já fez.')
+        confirmar = input('                          | Confirme apertando ENTER se ja fez.')
         try:
             with open('Chave.txt', 'r') as Chave:
                 bloco = Chave.readline()
@@ -1696,7 +1696,7 @@ def Autenticar():
             if caracteres_chave == lista:
                 Criptografar.Senha('12345678')
                 print('                          |')
-                print('                          | Sua senha foi redefinida para 12345678. É recomendado que altere-a.')
+                print('                          | Sua senha foi redefinida para 12345678. E recomendado que altere-a.')
                 print('                          |')
                 Esperar()
                 confirmar = input('                          | Aperte ENTER para continuar.')
@@ -1712,21 +1712,21 @@ def Autenticar():
                     
         except:
             print('                          |')
-            print('                          | Não foi possível ler o arquivo.')
+            print('                          | Nao foi possivel ler o arquivo.')
             Esperar()
             Esperar()
             Esperar()
             sys.exit()
 
     else:
-        #--Breve "Animação"---#
+        #--Breve "Animacao"---#
         pontos = '                          |'
         for i in range(26):
             os.system('cls')
             pontos += '-'
             print('\n\n\n\n\n\n                          ____________________________')
             print('                          |                          |')
-            print('                          |       Autenticação       |')
+            print('                          |       Autenticacao       |')
             print('                          |--------------------------|')
             print('                          |                          |')
             print('                          | Informe a senha:         |')
@@ -1737,7 +1737,7 @@ def Autenticar():
                 sleep(0.04)                
         print('                          |')
                 
-        #---Autenticação---#
+        #---Autenticacao---#
         if len(senha) != 8:
             print('                          |')
             print('                          | Senha incorreta')

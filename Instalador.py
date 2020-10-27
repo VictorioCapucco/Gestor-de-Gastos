@@ -8,9 +8,8 @@ def Esperar():
     for i in range(0,1):
         sleep(2)
 
-todos_caracteres = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'X', 'W', 'Y', 'Z', 'Ç', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'x', 'w', 'y', 'z', 'ç', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'Ã', 'Á', 'À', 'Â', 'É', 'È', 'Ê', 'Í', 'Ì', 'Ó', 'Ò', 'Ô', 'Ú', 'Ù', 'Ñ', 'ã', 'á', 'à', 'â', 'é', 'è', 'ê', 'í', 'ì', 'ó', 'ò', 'ô', 'ú', 'ù', 'ñ', '/', ' ']
+todos_caracteres = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'X', 'W', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'x', 'w', 'y', 'z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '/', ' ']
 
-#todos_caracteres = 'ABCDEFGHIJKLMNOPQRSTUVXWYZÇabcdefghijklmnopqrstuvxwyzç0123456789ÃÁÀÂÉÈÊÍÌÓÒÔÚÙÑãáàâéèêíìóòôúùñ/'
 random.shuffle(todos_caracteres)
 todos_caracteres.reverse()
 
@@ -25,7 +24,7 @@ for i in range(len(todos_caracteres)):
 
 bloco += "]"
 
-#---Verificando se os arquivos estão na pasta---#
+#---Verificando se os arquivos estao na pasta---#
 if (os.path.isfile('PyFiles\Controle_Gastos.py') == True) and (os.path.isfile('PyFiles\Classes.txt') == True):
     print(' _____________________________________')
     print(' |                                   |')
@@ -33,7 +32,7 @@ if (os.path.isfile('PyFiles\Controle_Gastos.py') == True) and (os.path.isfile('P
     print(' |___________________________________|\n')
     
 else:
-    print(' - Os arquivos do sistema não foram encontrados. Verifique se todos os arquivos foram descompactados e tente novamente.')
+    print(' - Os arquivos do sistema nao foram encontrados. Verifique se todos os arquivos foram descompactados e tente novamente.')
     confirmar = input('\n Aperte Enter para continuar..')
     sys.exit()
 
@@ -44,29 +43,29 @@ try:
         Arquivo_Caracteres.write('\n')
         Arquivo_Caracteres.write(bloco)
 except:
-    print(' Não foi possível gravar registros do sistema. Verifique as permissões e tente novamente!')
+    print(' Nao foi possivel gravar registros do sistema. Verifique as permissões e tente novamente!')
     confirmar = input('\n Aperte ENTER para contunar..')
     sys.exit()
 
 
 try:
-    pip_existe = (os.system('@echo  - Verificando se o pip está instalado && pip show pip'))
+    pip_existe = (os.system('@echo  - Verificando se o pip esta instalado && pip show pip'))
     Esperar()
 
     if pip_existe != 0:
         print('\n')
-        print(' Aparentemente o Pip não está instalado. Verifique e tente novamente')
+        print(' Aparentemente o Pip nao esta instalado. Verifique e tente novamente')
         Esperar()
         confirmar = input('\n Aperte ENTER para continuar..')
         sys.exit()
 
     print('\n')
-    pyinstaller_existe = (os.system('@echo  - Verificando se o pyinstaller está instalado && pip show pyinstaller'))
+    pyinstaller_existe = (os.system('@echo  - Verificando se o pyinstaller esta instalado && pip show pyinstaller'))
     Esperar()
 
     if pyinstaller_existe != 0:
         print('\n')
-        instalar = input('  Aparentemente o Pyinstaller não está instalado. Deseja instalar? (S/N): ')
+        instalar = input('  Aparentemente o Pyinstaller nao esta instalado. Deseja instalar? (S/N): ')
         instalar = instalar.upper()
 
         if instalar == 'S':
@@ -75,7 +74,7 @@ try:
             if instalar_pyinstaller == 0:
                 print('\n  Pyinstaller instalado com sucesso!')
             else:
-                print('\n Não foi possível instalar Pyinstaller. Tente novamente mais tarde.')
+                print('\n Nao foi possivel instalar Pyinstaller. Tente novamente mais tarde.')
                 Esperar()
                 confirmar = input('\n Aperte ENTER para continuar..')
                 sys.exit()
@@ -89,7 +88,7 @@ try:
     print('\n')
     criando_caracteres = (os.system('@echo  - Gerando Classes.py && copy PyFiles\Classes.txt PyFiles\Classes.py'))
     if criando_caracteres != 0:
-        print('\n\n Não foi possível salvar o arquivo Classes.py. Descompacte os arquivos em uma pasta limpa e tente novamente')
+        print('\n\n Nao foi possivel salvar o arquivo Classes.py. Descompacte os arquivos em uma pasta limpa e tente novamente')
         Esperar()
         confirmar = input('\n\n Aperte ENTER para continuar.')
         sys.exit()
@@ -98,13 +97,13 @@ try:
     print('\n')
     gerando_exe = (os.system('@echo  - Gerando executavel && pyinstaller --onefile PyFiles\Controle_Gastos.py'))
     if gerando_exe != 0:
-        print('\n\n Não foi possível gerar o executavel. Descompacte os arquivos em uma pasta limpa e tente novamente')
+        print('\n\n Nao foi possivel gerar o executavel. Descompacte os arquivos em uma pasta limpa e tente novamente')
         Esperar()
         confirmar = input('\n\n Aperte ENTER para continuar.')
         sys.exit()
 
     #---Copiando os exe's da pasta dist---#
-    print('\n\n - Finalizando a instalação\n')
+    print('\n\n - Finalizando a instalacao\n')
     os.system('@echo   Copiando Controle_Gastos.exe && copy dist\Controle_Gastos.exe ')
     
     #---Apagando arquivos---#
@@ -117,7 +116,7 @@ try:
     os.system('@echo   Apagando pasta PyFiles && rmdir PyFiles /s /q')
 
 
-    #---Gerando arquivo com chave criptográfica---#
+    #---Gerando arquivo com chave criptografica---#
     try:
         chave_criptografica = ''
         for char in todos_caracteres:
@@ -126,13 +125,13 @@ try:
         with open('Chave.txt', 'w') as Chave:
             Chave.write(chave_criptografica)
             Chave.write('\n')
-            Chave.write('Atenção, guarde este arquivo em um local seguro. Ele contém sua chave criptográfica para atualizações e recuperação de senha.\n')
+            Chave.write('Atencao, guarde este arquivo em um local seguro. Ele contem sua chave criptografica para atualizacões e recuperacao de senha.\n')
             print('\n')
     except:
-        print(' Não foi possível gravar em um arquivo sua chave criptografica. É recomendado que execute novamente o instalador')
+        print(' Nao foi possivel gravar em um arquivo sua chave criptografica. E recomendado que execute novamente o instalador')
         Esperar()
 
-    #---Gerando arquivo bat para apagar este executável---#
+    #---Gerando arquivo bat para apagar este executavel---#
     try:
         with open('Limpeza.bat', 'w') as Limpeza:
             Limpeza.write('@echo off \n')
@@ -144,11 +143,11 @@ try:
             Limpeza.write('timeout 5 /nobreak  >nul \n')
             Limpeza.write('del Limpeza.bat \n')                          
     except:
-        print(' Não foi possível apagar este executável. Apague-o manualmente.')
+        print(' Nao foi possivel apagar este executavel. Apague-o manualmente.')
         
 
 except:
-    print('\n Não foi possível gerar os registros. Verifique se o programa possui as permissões adequadas e tente novamente.')
+    print('\n Nao foi possivel gerar os registros. Verifique se o programa possui as permissões adequadas e tente novamente.')
     confirmar = input('\n Aperte ENTER para continuar..')
     sys.exit()
 
