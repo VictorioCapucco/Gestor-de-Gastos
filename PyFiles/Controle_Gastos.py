@@ -1468,7 +1468,7 @@ def Laco_Funcoes(opcao):
                 return Operacao_Cancelada(opcao)
            
             elif(pagamento_parcelado != 'S' and pagamento_parcelado != 'N'):
-                while (pagamento_parcelado != 'S' and pagamento_parcelado != 'S'):
+                while (pagamento_parcelado != 'S' and pagamento_parcelado != 'N'):
                     pagamento_parcelado = input ('        | Incorreto. Informe S ou N: ')
                     if pagamento_parcelado == '':
                         return Operacao_Cancelada(opcao)

@@ -1301,7 +1301,7 @@ class Descriptografar:
             sys.exit()
 
     def Pastas_Arquivos(informacao_criptografada):
-        Caracteres = ['N', 'U', 'W', '3', 'x', 'V', 'i', '4', 'u', '6', 'I', 'G', 'H', '/', 'R', 'n', 'E', 'd', '1', 'Q', 's', 'h', 'v', 'a', 'X', 'Y', 'o', 'F', 'l', 'r', '2', 'y', 'J', 'b', 'T', 'D', 'K', 'A', 'c', 'Z', 'M', 'C', '5', 'k', 'j', 'g', 'S', 'z', 'O', '0', 'P', 'q', '7', 'w', 'f', '8', 'm', 'B', 'L', 't', '9', 'e', 'p', ' ']
+        Caracteres = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'X', 'W', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'x', 'w', 'y', 'z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '/', ' ']
         try:
             informacao_descriptografada = ''
             contador = 0
